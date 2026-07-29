@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decampo Talabartería — Cuero de verdad, para el que vive en el campo</title>
+<meta name="description" content="Monturas, aperos, mates e indumentaria hechos a mano en Mendoza. Envíos a todo el país, 3 y 6 cuotas sin interés.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Ccircle cx='22' cy='22' r='22' fill='%230b3325'/%3E%3Ctext x='22' y='31' font-family='Georgia,serif' font-size='24' font-weight='600' fill='%23ee8fbe' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div data-topbar style="background:#0b3325; color:#f7c9df; font-size:12px; letter-spacing:.16em; text-transform:uppercase; padding:11px 24px; display:flex; justify-content:center; gap:36px; flex-wrap:wrap; font-weight:600">
+  <span>Envíos a todo el país</span>
+  <span data-dot style="color:#8fa073">·</span>
+  <span>3 y 6 cuotas sin interés</span>
+  <span data-dot style="color:#8fa073">·</span>
+  <span>Retiro en Av. Colón 738, Mendoza</span>
+</div>
+
+<header style="position:sticky; top:0; z-index:60; background:rgba(245,234,216,.94); backdrop-filter:blur(12px); border-bottom:1px solid rgba(32,30,29,.1)">
+  <div style="max-width:1280px; margin:0 auto; padding:14px clamp(20px,4vw,48px); display:flex; align-items:center; gap:clamp(12px,2vw,28px)">
+    <a href="#inicio" style="display:flex; align-items:center; gap:12px; flex-shrink:0">
+      <span style="width:44px; height:44px; border-radius:999px; background:#0b3325; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#ee8fbe; font-family:'Cinzel',serif; font-size:19px; font-weight:600; letter-spacing:.02em">D</span>
+      <span style="display:flex; flex-direction:column; line-height:1">
+        <span style="font-family:'Cinzel',serif; font-weight:600; font-size:21px; letter-spacing:.1em; color:#0b3325">DECAMPO</span>
+        <span data-brand-sub style="font-size:9.5px; letter-spacing:.34em; color:#82796a; margin-top:4px; font-weight:600">TALABARTERÍA</span>
+      </span>
+    </a>
+
+    <nav data-nav-links style="display:flex; gap:26px; margin-left:auto; align-items:center; font-size:14.5px; font-weight:600">
+      <a href="#categorias" style="color:#3d472b">Categorías</a>
+      <a href="#productos" style="color:#3d472b">Tienda</a>
+      <a href="#subastas" style="color:#3d472b">Subastas</a>
+      <a href="#taller" style="color:#3d472b">El taller</a>
+      <a href="#contacto" style="color:#3d472b">Contacto</a>
+    </nav>
+
+    <button type="button" data-nav-toggle class="btn btn-secondary btn-icon" style="margin-left:auto; width:44px; height:44px; padding:0; flex-shrink:0" aria-label="Abrir menú" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"></path><path d="M4 12h16"></path><path d="M4 18h16"></path></svg>
+    </button>
+
+    <button type="button" data-open-cart class="btn btn-primary" style="background:#0b3325; border-color:#0b3325; gap:10px; padding:10px 20px; flex-shrink:0">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+      <span data-cart-text>Carrito</span>
+      <span data-cart-count style="background:#ee8fbe; color:#0b3325; border-radius:999px; min-width:22px; height:22px; display:inline-flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; padding:0 6px">0</span>
+    </button>
+  </div>
+
+  <div data-nav-panel data-open="0" style="border-top:1px solid rgba(32,30,29,.1); background:#f5ead8">
+    <nav style="display:flex; flex-direction:column; padding:8px clamp(20px,4vw,48px) 18px">
+      <a href="#categorias" data-close-menu style="color:#0b3325; font-size:17px; font-weight:600; padding:14px 0; border-bottom:1px solid rgba(32,30,29,.08)">Categorías</a>
+      <a href="#productos" data-close-menu style="color:#0b3325; font-size:17px; font-weight:600; padding:14px 0; border-bottom:1px solid rgba(32,30,29,.08)">Tienda</a>
+      <a href="#subastas" data-close-menu style="color:#0b3325; font-size:17px; font-weight:600; padding:14px 0; border-bottom:1px solid rgba(32,30,29,.08)">Subastas</a>
+      <a href="#taller" data-close-menu style="color:#0b3325; font-size:17px; font-weight:600; padding:14px 0; border-bottom:1px solid rgba(32,30,29,.08)">El taller</a>
+      <a href="#contacto" data-close-menu style="color:#0b3325; font-size:17px; font-weight:600; padding:14px 0">Contacto</a>
+      <a href="https://wa.me/5493516108414" target="_blank" rel="noopener" class="btn btn-secondary btn-block" style="margin-top:14px; padding:14px">Escribinos por WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<section id="inicio" style="position:relative; max-width:1280px; margin:0 auto; padding:clamp(48px,7vw,96px) clamp(20px,4vw,48px) clamp(40px,5vw,72px)">
+  <div data-hero-blob style="position:absolute; top:6%; right:34%; width:340px; height:340px; border-radius:999px; background:#f7c9df; opacity:.5; filter:blur(2px); pointer-events:none"></div>
+  <div data-hero-grid style="position:relative; display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:clamp(32px,5vw,72px); align-items:center">
+    <div style="animation:lp-rise .7s ease both">
+      <div style="display:inline-flex; align-items:center; gap:9px; background:#e1eecc; color:#3d472b; border-radius:999px; padding:7px 16px; font-size:12.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase">
+        <span style="width:7px; height:7px; border-radius:999px; background:#8fa073; display:block; animation:lp-pulse 2.2s ease-in-out infinite"></span>
+        Talabartería desde 1978
+      </div>
+      <h1 style="font-family:'Cinzel',serif; font-weight:600; font-size:clamp(40px,5.6vw,74px); line-height:1.02; letter-spacing:.005em; color:#0b3325; margin:22px 0 0; text-wrap:balance">
+        Cuero de verdad,<br>para el que<br>vive en el <span style="color:#c67139">campo</span>.
+      </h1>
+      <p style="font-size:clamp(16px,1.3vw,18.5px); line-height:1.62; color:#474238; max-width:46ch; margin:24px 0 0; text-wrap:pretty">
+        Monturas, aperos, mates e indumentaria hechos a mano en Mendoza. Y todo lo que el caballo necesita para estar sano. Lo que ves acá es lo que hay en el galpón: el stock se actualiza solo.
+      </p>
+      <div style="display:flex; gap:14px; margin-top:32px; flex-wrap:wrap">
+        <a href="#productos" class="btn btn-primary" style="background:#0b3325; border-color:#0b3325; padding:14px 28px; font-size:15px">Ver la tienda</a>
+        <a href="#taller" class="btn btn-secondary" style="padding:14px 28px; font-size:15px">Conocé el taller</a>
+      </div>
+      <div style="display:flex; gap:clamp(20px,3vw,44px); margin-top:44px; flex-wrap:wrap">
+        <div style="display:flex; gap:11px; align-items:flex-start; max-width:190px">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#c67139" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg>
+          <span style="font-size:13.5px; line-height:1.45; color:#474238"><strong style="color:#0b3325; display:block">Envío en 48–72 h</strong>Andreani y Correo Argentino</span>
+        </div>
+        <div style="display:flex; gap:11px; align-items:flex-start; max-width:190px">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#c67139" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          <span style="font-size:13.5px; line-height:1.45; color:#474238"><strong style="color:#0b3325; display:block">Stock real</strong>Sincronizado con el depósito</span>
+        </div>
+        <div style="display:flex; gap:11px; align-items:flex-start; max-width:190px">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#c67139" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          <span style="font-size:13.5px; line-height:1.45; color:#474238"><strong style="color:#0b3325; display:block">6 cuotas sin interés</strong>Mercado Pago y transferencia</span>
+        </div>
+      </div>
+    </div>
+    <div data-hero-media class="washed" style="border-radius:28px; overflow:hidden; box-shadow:0 12px 32px rgba(46,43,37,.22); aspect-ratio:4/5; min-height:380px; animation:lp-rise .9s ease both">
+      <img src="img/hero-montura.jpg" alt="Montura criolla de cuero hecha a mano" style="width:100%; height:100%; object-fit:cover">
+    </div>
+  </div>
+</section>
+
+<section id="categorias" style="max-width:1280px; margin:0 auto; padding:clamp(40px,5vw,72px) clamp(20px,4vw,48px)">
+  <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:38px">
+    <div>
+      <div style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#c67139; font-weight:700; margin-bottom:10px">Rubros</div>
+      <h2 style="font-family:'Cinzel',serif; font-weight:600; font-size:clamp(28px,3.4vw,44px); color:#0b3325; margin:0; letter-spacing:.01em">Elegí por dónde empezar</h2>
+    </div>
+    <p style="font-size:15px; color:#645c50; max-width:34ch; margin:0; line-height:1.55">Tocá un rubro y la tienda se filtra sola. Todas las categorías vienen del sistema del negocio.</p>
+  </div>
+  <div data-cat-grid style="display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr)); gap:clamp(16px,2.4vw,32px)"></div>
+</section>
+
+<section id="productos" style="max-width:1280px; margin:0 auto; padding:clamp(32px,4vw,56px) clamp(20px,4vw,48px) clamp(56px,7vw,96px)">
+  <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:26px">
+    <div>
+      <div style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#c67139; font-weight:700; margin-bottom:10px">Tienda</div>
+      <h2 style="font-family:'Cinzel',serif; font-weight:600; font-size:clamp(28px,3.4vw,44px); color:#0b3325; margin:0; letter-spacing:.01em">Lo que hay hoy en el galpón</h2>
+    </div>
+    <div style="font-size:13.5px; color:#645c50; display:flex; align-items:center; gap:9px">
+      <span style="width:8px; height:8px; border-radius:999px; background:#8fa073; display:block; animation:lp-pulse 2.2s ease-in-out infinite"></span>
+      <span data-results-label>21 productos disponibles</span>
+    </div>
+  </div>
+
+  <div data-filter-chips style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:34px"></div>
+
+  <div data-product-grid style="display:grid; grid-template-columns:repeat(auto-fill,minmax(258px,1fr)); gap:clamp(16px,2vw,26px)"></div>
+</section>
+
+<section id="taller" style="background:#0b3325; color:#f5ead8; padding:clamp(56px,7vw,104px) clamp(20px,4vw,48px)">
+  <div style="max-width:1280px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(32px,5vw,72px); align-items:center">
+    <div class="washed" style="border-radius:28px; overflow:hidden; aspect-ratio:5/4; box-shadow:0 12px 32px rgba(0,0,0,.35)">
+      <img src="img/taller-cuero.jpg" alt="Artesano cortando cuero a mano en el taller" style="width:100%; height:100%; object-fit:cover">
+    </div>
+    <div>
+      <div style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#ee8fbe; font-weight:700; margin-bottom:14px">El taller</div>
+      <h2 style="font-family:'Cinzel',serif; font-weight:600; font-size:clamp(30px,3.8vw,52px); line-height:1.08; color:#f5ead8; margin:0 0 20px; letter-spacing:.01em">Cuarenta y pico<br>de años cortando<br><span style="color:#ee8fbe">a mano</span>.</h2>
+      <p style="font-size:16.5px; line-height:1.65; color:#ccdbb2; max-width:48ch; margin:0 0 18px; text-wrap:pretty">Empezamos arreglando aperos para los vecinos y terminamos haciendo monturas que salen de Mendoza para todo el país. Cada pieza pasa por las mismas manos: se elige el cuero, se corta, se cose y se firma.</p>
+      <p style="font-size:16.5px; line-height:1.65; color:#ccdbb2; max-width:48ch; margin:0 0 30px; text-wrap:pretty">Lo que no hacemos nosotros lo elegimos con el mismo criterio: los productos de cuidado equino que vendemos son los que usamos en nuestros propios caballos.</p>
+      <div data-stats style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; max-width:440px">
+        <div>
+          <div style="font-family:'Cinzel',serif; font-size:clamp(26px,3vw,38px); color:#ee8fbe; line-height:1">47</div>
+          <div style="font-size:12.5px; color:#aebf92; margin-top:6px; line-height:1.35">años de oficio</div>
+        </div>
+        <div>
+          <div style="font-family:'Cinzel',serif; font-size:clamp(26px,3vw,38px); color:#ee8fbe; line-height:1">+900</div>
+          <div style="font-size:12.5px; color:#aebf92; margin-top:6px; line-height:1.35">monturas entregadas</div>
+        </div>
+        <div>
+          <div style="font-family:'Cinzel',serif; font-size:clamp(26px,3vw,38px); color:#ee8fbe; line-height:1">24</div>
+          <div style="font-size:12.5px; color:#aebf92; margin-top:6px; line-height:1.35">provincias con envío</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="position:relative; height:clamp(340px,46vw,540px); overflow:hidden">
+  <img src="img/campo-lifestyle.jpg" alt="Jornada de campo en Mendoza" style="width:100%; height:100%; object-fit:cover">
+  <div data-campo-scrim style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(11,51,37,.78) 0%, rgba(11,51,37,.45) 45%, rgba(11,51,37,0) 75%); pointer-events:none; display:flex; align-items:center">
+    <div style="max-width:1280px; width:100%; margin:0 auto; padding:0 clamp(20px,4vw,48px)">
+      <p style="font-family:'Cinzel',serif; font-weight:600; font-size:clamp(22px,3vw,40px); line-height:1.25; color:#f5ead8; margin:0; max-width:17ch; text-wrap:balance">&ldquo;El apero bueno no se nota: se olvida uno de que lo tiene puesto.&rdquo;</p>
+      <div style="font-size:12.5px; letter-spacing:.16em; text-transform:uppercase; color:#ee8fbe; font-weight:700; margin-top:20px">Don Ramón · 30 años en el taller</div>
+    </div>
+  </div>
+</section>
+
+<section id="subastas" style="max-width:1280px; margin:0 auto; padding:clamp(56px,7vw,96px) clamp(20px,4vw,48px)">
+  <div style="background:#f7c9df; border-radius:28px; padding:clamp(28px,4vw,56px); display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(28px,4vw,56px); align-items:center; position:relative; overflow:hidden">
+    <div style="position:absolute; right:-80px; bottom:-100px; width:280px; height:280px; border-radius:999px; background:#ee8fbe; opacity:.55; pointer-events:none"></div>
+    <div style="position:relative">
+      <div style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#8c491a; font-weight:700; margin-bottom:12px">Ventas especiales</div>
+      <h2 style="font-family:'Cinzel',serif; font-weight:600; font-size:clamp(28px,3.4vw,46px); line-height:1.08; color:#0b3325; margin:0 0 16px; letter-spacing:.01em">Remate de piezas únicas</h2>
+      <p style="font-size:16px; line-height:1.6; color:#474238; max-width:42ch; margin:0 0 26px; text-wrap:pretty">Una vez por mes sacamos a puja piezas que no se repiten: monturas de exposición, cintos tallados por encargo cancelado, cuchillos con cabo de asta. Se avisa por mail y por Instagram.</p>
+      <form data-subscribe-form style="display:flex; gap:10px; flex-wrap:wrap; max-width:420px">
+        <input class="input" type="email" required placeholder="tu@correo.com" style="flex:1; min-width:190px" aria-label="Correo para avisos de subastas">
+        <button type="submit" class="btn btn-primary" style="background:#0b3325; border-color:#0b3325" data-subscribe-label>Avisame</button>
+      </form>
+    </div>
+    <div style="position:relative; background:#fffdf9; border-radius:28px; padding:26px; box-shadow:0 12px 32px rgba(46,43,37,.22)">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px">
+        <span style="font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:#82796a; font-weight:700">Lote 014 · en curso</span>
+        <span data-auction-countdown style="background:#e1eecc; color:#3d472b; font-size:11.5px; font-weight:700; padding:5px 11px; border-radius:999px">Cierra en — d — h</span>
+      </div>
+      <div class="washed" style="border-radius:16px; overflow:hidden; aspect-ratio:16/10; margin-bottom:18px">
+        <img src="img/bolso-cuero.webp" alt="Bolso de viaje de cuero curtido al vegetal, pieza única" style="width:100%; height:100%; object-fit:cover">
+      </div>
+      <h3 style="font-family:'Cinzel',serif; font-weight:600; font-size:20px; color:#0b3325; margin:0 0 6px; letter-spacing:.01em">Bolso de viaje · cuero curtido al vegetal</h3>
+      <p style="font-size:13.5px; color:#645c50; margin:0 0 18px; line-height:1.5">Pieza única, terminada en marzo. Herrajes de bronce macizo y costura a mano en hilo encerado.</p>
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px; padding-top:16px; border-top:1px solid rgba(32,30,29,.12)">
+        <div>
+          <div style="font-size:11.5px; color:#82796a; letter-spacing:.1em; text-transform:uppercase; font-weight:700">Oferta actual</div>
+          <div style="font-family:'Cinzel',serif; font-size:28px; font-weight:600; color:#0b3325; margin-top:4px">$ 1.240.000</div>
+        </div>
+        <button type="button" data-bid class="btn btn-secondary" style="padding:12px 22px">Ofertar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#ebddc5; padding:clamp(48px,6vw,80px) clamp(20px,4vw,48px)">
+  <div style="max-width:1280px; margin:0 auto">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:32px">
+      <h2 style="font-family:'Cinzel',serif; font-weight:600; font-size:clamp(24px,2.8vw,36px); color:#0b3325; margin:0; letter-spacing:.01em">Cómo comprás y cómo te llega</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:clamp(16px,2vw,26px)">
+      <div style="background:#fffdf9; border-radius:28px; padding:26px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c67139" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>
+        <h3 style="font-family:'Cinzel',serif; font-weight:600; font-size:18px; color:#0b3325; margin:16px 0 8px">Pagos</h3>
+        <p style="font-size:14px; line-height:1.55; color:#645c50; margin:0">Mercado Pago, tarjetas en 3 y 6 cuotas sin interés, transferencia con 10% off y efectivo en el local.</p>
+      </div>
+      <div style="background:#fffdf9; border-radius:28px; padding:26px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c67139" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg>
+        <h3 style="font-family:'Cinzel',serif; font-weight:600; font-size:18px; color:#0b3325; margin:16px 0 8px">Envíos</h3>
+        <p style="font-size:14px; line-height:1.55; color:#645c50; margin:0">Andreani y Correo Argentino a todo el país. Envío gratis desde $150.000. Retiro sin cargo en Av. Colón 738.</p>
+      </div>
+      <div style="background:#fffdf9; border-radius:28px; padding:26px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c67139" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
+        <h3 style="font-family:'Cinzel',serif; font-weight:600; font-size:18px; color:#0b3325; margin:16px 0 8px">Stock siempre al día</h3>
+        <p style="font-size:14px; line-height:1.55; color:#645c50; margin:0">La tienda se sincroniza con el sistema del negocio: precios, altas y stock se actualizan solos, sin carga manual.</p>
+      </div>
+      <div style="background:#fffdf9; border-radius:28px; padding:26px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c67139" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path></svg>
+        <h3 style="font-family:'Cinzel',serif; font-weight:600; font-size:18px; color:#0b3325; margin:16px 0 8px">Cambios</h3>
+        <p style="font-size:14px; line-height:1.55; color:#645c50; margin:0">30 días para cambiar talles de indumentaria. Las piezas por encargo se acuerdan antes de empezar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" style="max-width:1280px; margin:0 auto; padding:clamp(56px,7vw,96px) clamp(20px,4vw,48px)">
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(28px,4vw,64px); align-items:start">
+    <div>
+      <div style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#c67139; font-weight:700; margin-bottom:10px">Contacto</div>
+      <h2 style="font-family:'Cinzel',serif; font-weight:600; font-size:clamp(28px,3.4vw,44px); line-height:1.1; color:#0b3325; margin:0 0 18px; letter-spacing:.01em">¿Buscás algo a medida?</h2>
+      <p style="font-size:16px; line-height:1.6; color:#474238; max-width:40ch; margin:0 0 30px; text-wrap:pretty">Escribinos y te contestamos el mismo día. Si es un encargo, contanos para qué caballo o para qué uso y te pasamos precio y plazo.</p>
+      <div style="display:flex; flex-direction:column; gap:16px">
+        <a href="https://wa.me/5493516108414" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:13px; color:#0b3325; font-size:15.5px; font-weight:600">
+          <span style="width:40px; height:40px; border-radius:999px; background:#e1eecc; display:flex; align-items:center; justify-content:center; flex-shrink:0">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#3d472b" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </span>
+          +54 9 351 610-8414
+        </a>
+        <a href="https://www.instagram.com/decampotalabarteria/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:13px; color:#0b3325; font-size:15.5px; font-weight:600">
+          <span style="width:40px; height:40px; border-radius:999px; background:#f7c9df; display:flex; align-items:center; justify-content:center; flex-shrink:0">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8c491a" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+          </span>
+          @decampotalabarteria
+        </a>
+        <a href="https://www.google.com/maps?q=Decampo+Talabarter%C3%ADa,+Av.+Col%C3%B3n+738,+M5500+Mendoza" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:13px; color:#0b3325; font-size:15.5px; font-weight:600">
+          <span style="width:40px; height:40px; border-radius:999px; background:#ffe1d0; display:flex; align-items:center; justify-content:center; flex-shrink:0">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8c491a" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </span>
+          Av. Colón 738, Mendoza
+        </a>
+      </div>
+    </div>
+
+    <div style="background:#fffdf9; border-radius:28px; padding:clamp(24px,3vw,40px); box-shadow:0 3px 10px rgba(46,43,37,.16)">
+      <div data-contact-sent hidden style="text-align:center; padding:36px 8px">
+        <span style="width:64px; height:64px; border-radius:999px; background:#e1eecc; display:flex; align-items:center; justify-content:center; margin:0 auto 20px">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3d472b" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+        </span>
+        <h3 style="font-family:'Cinzel',serif; font-weight:600; font-size:22px; color:#0b3325; margin:0 0 10px">¡Gracias, <span data-contact-sent-name></span>!</h3>
+        <p style="font-size:15px; line-height:1.55; color:#645c50; margin:0 0 24px">Recibimos tu consulta. Te escribimos a la brevedad.</p>
+        <button type="button" data-contact-reset class="btn btn-secondary">Mandar otra consulta</button>
+      </div>
+      <form data-contact-form style="display:flex; flex-direction:column; gap:18px">
+        <div class="field">
+          <label for="lp-nombre">Nombre y apellido</label>
+          <input class="input" id="lp-nombre" name="nombre" type="text" placeholder="Juan Gómez">
+        </div>
+        <div class="field">
+          <label for="lp-mail">Correo electrónico</label>
+          <input class="input" id="lp-mail" name="mail" type="email" placeholder="juan@correo.com">
+        </div>
+        <div class="field">
+          <label for="lp-consulta">Tu consulta</label>
+          <textarea class="input" id="lp-consulta" name="consulta" rows="5" placeholder="Contanos qué necesitás: medida, cantidad, para cuándo…" style="resize:vertical; min-height:120px; font-family:inherit"></textarea>
+        </div>
+        <div data-contact-error hidden style="font-size:13.5px; color:#8c491a; font-weight:600"></div>
+        <button type="submit" class="btn btn-primary btn-block" style="background:#0b3325; border-color:#0b3325; padding:15px">Enviar consulta</button>
+        <p style="font-size:12.5px; color:#82796a; margin:0; line-height:1.5">También podés escribirnos directo por WhatsApp si preferís.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#0b3325; color:#ccdbb2; padding:clamp(56px,7vw,88px) clamp(20px,4vw,48px) 40px">
+  <div style="max-width:1280px; margin:0 auto">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:clamp(28px,4vw,56px)">
+      <div>
+        <div style="font-family:'Cinzel',serif; font-weight:600; font-size:26px; letter-spacing:.1em; color:#f5ead8">DECAMPO</div>
+        <div style="font-size:10px; letter-spacing:.34em; color:#8fa073; margin-top:6px; font-weight:600">TALABARTERÍA</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#aebf92; margin:22px 0 0; max-width:30ch">Cuero, aperos y todo para el campo. Mendoza, Argentina.</p>
+      </div>
+      <div>
+        <div style="font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:#ee8fbe; font-weight:700; margin-bottom:16px">Tienda</div>
+        <div style="display:flex; flex-direction:column; gap:10px; font-size:14.5px">
+          <a href="#productos" style="color:#ccdbb2">Todos los productos</a>
+          <a href="#categorias" style="color:#ccdbb2">Categorías</a>
+          <a href="#subastas" style="color:#ccdbb2">Subastas</a>
+          <a href="#taller" style="color:#ccdbb2">El taller</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:#ee8fbe; font-weight:700; margin-bottom:16px">Contacto</div>
+        <div style="display:flex; flex-direction:column; gap:10px; font-size:14.5px">
+          <a href="https://wa.me/5493516108414" target="_blank" rel="noopener" style="color:#ccdbb2">WhatsApp +54 9 351 610-8414</a>
+          <a href="https://www.instagram.com/decampotalabarteria/" target="_blank" rel="noopener" style="color:#ccdbb2">Instagram</a>
+          <a href="https://www.google.com/maps?q=Decampo+Talabarter%C3%ADa,+Av.+Col%C3%B3n+738,+M5500+Mendoza" target="_blank" rel="noopener" style="color:#ccdbb2">Av. Colón 738, Mendoza</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:#ee8fbe; font-weight:700; margin-bottom:16px">Local</div>
+        <div style="font-size:14.5px; line-height:1.7; color:#aebf92">
+          Lunes a viernes 9 a 13 y 16 a 20<br>Sábados 9 a 13<br>Domingos cerrado
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:clamp(40px,5vw,64px); padding-top:24px; border-top:1px solid rgba(245,234,216,.16); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:12.5px; color:#8fa073">
+      <span>© 2026 Decampo Talabartería</span>
+      <span>Tienda online sincronizada con el sistema de gestión</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5493516108414?text=Hola%20Decampo%2C%20quer%C3%ADa%20consultar%20por..." target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp" class="wa-bubble" style="position:fixed; right:clamp(16px,2.5vw,28px); bottom:clamp(16px,2.5vw,28px); z-index:90; width:60px; height:60px; border-radius:999px; background:#25d366; color:#fffdf9; display:flex; align-items:center; justify-content:center; box-shadow:0 12px 32px rgba(46,43,37,.3); transition:transform .2s ease, box-shadow .2s ease">
+  <svg width="31" height="31" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.174.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.36.101 11.945c0 2.096.549 4.14 1.595 5.945L0 24l6.305-1.654a11.9 11.9 0 0 0 5.683 1.448h.005c6.582 0 11.941-5.361 11.944-11.945a11.86 11.86 0 0 0-3.417-8.4M12.05 21.785h-.004a9.9 9.9 0 0 1-5.031-1.378l-.361-.214-3.741.981.999-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.263c.002-5.45 4.437-9.884 9.887-9.884a9.82 9.82 0 0 1 6.99 2.898 9.83 9.83 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"></path></svg>
+</a>
+
+<!-- Cart drawer -->
+<div data-cart-wrap style="position:fixed; inset:0; z-index:100; display:none; justify-content:flex-end">
+  <div data-close-cart style="position:absolute; inset:0; background:rgba(11,51,37,.5); backdrop-filter:blur(3px)"></div>
+  <aside style="position:relative; width:min(420px,100%); background:#f9f4ed; height:100%; display:flex; flex-direction:column; box-shadow:0 12px 32px rgba(46,43,37,.35); animation:lp-rise .28s ease both">
+    <div style="padding:24px 26px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(32,30,29,.12)">
+      <h2 style="font-family:'Cinzel',serif; font-weight:600; font-size:21px; color:#0b3325; margin:0; letter-spacing:.02em">Tu carrito</h2>
+      <button type="button" data-close-cart class="btn btn-ghost btn-icon" aria-label="Cerrar carrito">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+      </button>
+    </div>
+
+    <div data-cart-items style="flex:1; overflow-y:auto; padding:20px 26px; display:flex; flex-direction:column; gap:18px"></div>
+
+    <div style="padding:22px 26px 26px; border-top:1px solid rgba(32,30,29,.12); background:#fffdf9">
+      <div style="display:flex; justify-content:space-between; font-size:14.5px; color:#645c50; margin-bottom:8px">
+        <span>Subtotal</span><span data-cart-subtotal>$ 0</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-size:14.5px; color:#645c50; margin-bottom:14px">
+        <span>Envío</span><span data-cart-shipping>—</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:baseline; padding-top:14px; border-top:1px solid rgba(32,30,29,.12)">
+        <span style="font-size:15px; font-weight:700; color:#0b3325">Total</span>
+        <span data-cart-total style="font-family:'Cinzel',serif; font-size:26px; font-weight:600; color:#0b3325">$ 0</span>
+      </div>
+      <button type="button" data-checkout class="btn btn-primary btn-block" style="background:#0b3325; border-color:#0b3325; margin-top:18px; padding:15px">Finalizar compra</button>
+      <p style="font-size:12px; color:#82796a; text-align:center; margin:12px 0 0; line-height:1.5">Pagás con Mercado Pago. Hasta 6 cuotas sin interés.</p>
+    </div>
+  </aside>
+</div>
+
+<!-- Product modal -->
+<div data-product-modal-wrap data-modal-wrap class="dialog-backdrop" style="position:fixed; inset:0; z-index:110; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(11,51,37,.55)">
+  <div data-close-product style="position:absolute; inset:0"></div>
+  <div data-modal class="dialog" style="position:relative; max-width:900px; width:100%; max-height:88vh; overflow-y:auto; background:#fffdf9; border-radius:28px; padding:0; animation:lp-rise .28s ease both">
+    <button type="button" data-close-product class="btn btn-ghost btn-icon" style="position:absolute; top:16px; right:16px; z-index:2; background:rgba(255,253,249,.9)" aria-label="Cerrar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+    </button>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <div style="background:#ebddc5; aspect-ratio:1; overflow:hidden; position:relative">
+        <img data-modal-img src="" alt="" style="width:100%; height:100%; object-fit:cover">
+      </div>
+      <div style="padding:clamp(24px,3vw,40px); display:flex; flex-direction:column">
+        <div data-modal-category style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#82796a; font-weight:700"></div>
+        <h2 data-modal-name style="font-family:'Cinzel',serif; font-weight:600; font-size:clamp(23px,2.6vw,32px); line-height:1.15; color:#0b3325; margin:12px 0 0; letter-spacing:.01em; text-wrap:pretty"></h2>
+        <div data-modal-price style="font-family:'Cinzel',serif; font-size:30px; font-weight:600; color:#0b3325; margin:16px 0 4px"></div>
+        <div data-modal-stock style="font-size:13.5px; color:#728157; font-weight:600"></div>
+        <p data-modal-desc style="font-size:15.5px; line-height:1.6; color:#474238; margin:20px 0 0; text-wrap:pretty"></p>
+        <div data-modal-tags style="display:flex; gap:8px; flex-wrap:wrap; margin:20px 0 0"></div>
+        <div style="margin-top:auto; padding-top:26px; display:flex; gap:12px; flex-wrap:wrap">
+          <button type="button" data-modal-add class="btn btn-primary" style="background:#0b3325; border-color:#0b3325; flex:1; min-width:180px; padding:14px 24px">Agregar al carrito</button>
+          <a href="https://wa.me/5493516108414" target="_blank" rel="noopener" class="btn btn-secondary" style="padding:14px 22px">Consultar</a>
+        </div>
+        <p data-modal-sku style="font-size:12.5px; color:#82796a; margin:16px 0 0; line-height:1.5"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div data-toast hidden style="position:fixed; left:50%; bottom:28px; transform:translateX(-50%); z-index:120; background:#0b3325; color:#f7c9df; padding:14px 24px; border-radius:999px; font-size:14.5px; font-weight:600; box-shadow:0 12px 32px rgba(46,43,37,.3); animation:lp-rise .25s ease both"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

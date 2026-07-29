@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perdú Panadería &amp; Cafetería — Pan honesto desde 2018</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<style>/* FONTS STRIPPED */</style>
+<style>
+  /* ════════════════════════════════════════════════════════════════
+     PERDÚ · Sistema de diseño
+     Fuente de verdad: V1 Editorial Bold + Diseño Web Responsive
+     ════════════════════════════════════════════════════════════════ */
+  :root{
+    --paper:#F4EFE8;
+    --ink:#181C22;
+    --ink-soft:#3A3F47;
+    --ink-mute:rgba(24,28,34,.55);
+    --primary:#1B5A75;
+    --primary-deep:#0F3F54;
+    --brick:#B86B3F;
+    --line:rgba(24,28,34,.12);
+    --line-soft:rgba(24,28,34,.06);
+    --placeholder:rgba(24,28,34,.04);
+    --stripe:rgba(24,28,34,.06);
+    --display:'Anton', 'Impact', sans-serif;
+    --body:'Inter', system-ui, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+    --container:1320px;
+    --gutter:clamp(20px, 4vw, 64px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:var(--paper); color:var(--ink); }
+  body { font-family:var(--body); -webkit-font-smoothing:antialiased; line-height:1.5; overflow-x:hidden; }
+  img { max-width:100%; display:block; }
+  a { color:inherit; text-decoration:none; }
+  button { font-family:inherit; border:none; cursor:pointer; background:none; color:inherit; }
+  ::selection { background:var(--primary); color:#fff; }
+
+  /* ─── Layout helpers ─────────────────────────────────────────── */
+  .wrap { max-width:var(--container); margin:0 auto; padding:0 var(--gutter); }
+  .mono { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+  .display { font-family:var(--display); letter-spacing:.005em; line-height:.88; color:var(--ink); margin:0; }
+  .accent { color:var(--primary); }
+  .btn {
+    display:inline-flex; align-items:center; gap:10px;
+    padding:16px 24px;
+    font-family:var(--display); font-size:18px; letter-spacing:.04em;
+    background:var(--ink); color:var(--paper);
+    transition: background 150ms ease, transform 150ms ease;
+  }
+  .btn:hover { background:var(--primary); }
+  .btn--ghost {
+    background:transparent; color:var(--ink); border:1px solid var(--ink);
+    padding:14px 20px; font-family:var(--body); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+  }
+  .btn--ghost:hover { background:var(--ink); color:var(--paper); }
+  .btn--invert { background:#fff; color:var(--primary); }
+  .btn--invert:hover { background:var(--ink); color:#fff; }
+  .btn--sm { padding:10px 16px; font-size:14px; }
+  .pill {
+    display:inline-block; padding:6px 12px;
+    border:1px solid var(--line); font-family:var(--mono); font-size:10px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft);
+  }
+
+  /* ─── Photo placeholders (sistema editorial) ─────────────────── */
+  .photo {
+    position:relative;
+    background:
+      repeating-linear-gradient(135deg, var(--stripe) 0 1px, transparent 1px 16px),
+      var(--placeholder);
+    border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .photo--warm {
+    background:
+      repeating-linear-gradient(135deg, rgba(184,107,63,.08) 0 1px, transparent 1px 16px),
+      linear-gradient(135deg, rgba(184,107,63,.14), rgba(184,107,63,.04));
+  }
+  .photo--cool {
+    background:
+      repeating-linear-gradient(135deg, rgba(27,90,117,.08) 0 1px, transparent 1px 16px),
+      linear-gradient(135deg, rgba(27,90,117,.14), rgba(27,90,117,.04));
+  }
+  .photo > .photo-cap {
+    position:absolute; inset:auto 0 0 0;
+    padding:14px 16px;
+    font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--ink-soft); opacity:.85;
+    display:flex; justify-content:space-between; gap:12px;
+  }
+  .photo > .photo-id {
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--ink-soft); opacity:.55; text-align:center; padding:24px;
+  }
+
+  /* ─── Nav sticky ─────────────────────────────────────────────── */
+  .nav {
+    position:sticky; top:0; z-index:60;
+    background:rgba(244,239,232,.85);
+    backdrop-filter:blur(14px) saturate(140%);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    border-bottom:1px solid transparent;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .nav.is-scrolled { border-bottom-color:var(--line); }
+  .nav__inner {
+    max-width:var(--container); margin:0 auto;
+    padding:18px var(--gutter);
+    display:flex; align-items:center; gap:24px;
+  }
+  .brand {
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--display); font-size:26px; letter-spacing:.02em; line-height:1;
+  }
+  .brand__mark { color:var(--primary); display:inline-flex; }
+  .brand small {
+    font-family:var(--body); font-size:9px; font-weight:600; letter-spacing:.2em;
+    margin-left:6px; color:var(--ink-soft);
+  }
+
+  .nav__links {
+    display:none;
+    gap:24px;
+    font-size:13px; letter-spacing:.01em;
+    margin-left:auto;
+  }
+  .nav__links a { position:relative; padding:6px 0; color:var(--ink); }
+  .nav__links a::after {
+    content:""; position:absolute; left:0; right:100%; bottom:2px;
+    height:1px; background:var(--primary); transition:right .25s ease;
+  }
+  .nav__links a:hover::after { right:0; }
+
+  .nav__social { display:none; align-items:center; gap:14px; margin-left:8px; padding-left:20px; border-left:1px solid var(--line); }
+  .nav__social a {
+    width:18px; height:18px; color:var(--ink-soft);
+    display:inline-flex; align-items:center; justify-content:center;
+    transition: color .15s ease, transform .15s ease;
+  }
+  .nav__social a:hover { color:var(--primary); transform:translateY(-1px); }
+  .nav__social svg { width:100%; height:100%; }
+
+  .nav__burger {
+    margin-left:auto;
+    width:42px; height:42px; display:flex; flex-direction:column; gap:5px;
+    align-items:center; justify-content:center;
+  }
+  .nav__burger span { display:block; width:22px; height:1.5px; background:var(--ink); transition:transform .2s ease; }
+
+  @media (min-width: 1000px){
+    .nav__links { display:flex; }
+    .nav__social { display:flex; margin-left:8px; }
+    .nav__burger { display:none; }
+  }
+
+  /* ─── Mobile drawer (animación tomada del archivo de ref) ────── */
+  .drawer { position:fixed; inset:0; z-index:80; pointer-events:none; }
+  .drawer__scrim {
+    position:absolute; inset:0; background:rgba(0,0,0,.4);
+    opacity:0; transition:opacity .28s ease;
+  }
+  .drawer__panel {
+    position:absolute; top:0; right:0; bottom:0; width:min(82%, 380px);
+    background:var(--paper); padding:24px 28px 32px;
+    transform:translateX(100%); transition:transform .32s cubic-bezier(.2,.7,.2,1);
+    display:flex; flex-direction:column;
+  }
+  .drawer.is-open { pointer-events:auto; }
+  .drawer.is-open .drawer__scrim { opacity:1; }
+  .drawer.is-open .drawer__panel { transform:translateX(0); }
+  .drawer__head { display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; }
+  .drawer__close { font-size:30px; line-height:1; width:32px; height:32px; }
+  .drawer__list { display:flex; flex-direction:column; }
+  .drawer__list a {
+    display:flex; align-items:baseline; gap:16px;
+    padding:16px 0; border-bottom:1px solid var(--line-soft);
+  }
+  .drawer__list a span:first-child { font-family:var(--mono); font-size:10px; color:var(--ink-mute); min-width:24px; }
+  .drawer__list a span:last-child { font-family:var(--display); font-size:28px; }
+  .drawer__social {
+    margin-top:auto; padding-top:24px; display:flex; gap:18px; align-items:center;
+  }
+  .drawer__social a { width:22px; height:22px; color:var(--ink); }
+  .drawer__social svg { width:100%; height:100%; }
+
+  /* ─── HERO (Historia) ────────────────────────────────────────── */
+  .hero { padding:32px 0 80px; }
+  .hero__meta { display:flex; justify-content:space-between; margin-bottom:32px; gap:12px; flex-wrap:wrap; }
+  .hero__grid { display:grid; grid-template-columns:1fr; gap:32px; align-items:center; }
+  .hero__title {
+    font-size: clamp(56px, 9vw, 140px);
+    line-height:.9; letter-spacing:.005em;
+  }
+  .hero__sub {
+    font-family:var(--body); font-size:clamp(15px, 1.4vw, 18px);
+    color:var(--ink-soft); max-width:46ch; line-height:1.55; margin:32px 0 0;
+  }
+  .hero__cta { display:flex; gap:12px; flex-wrap:wrap; margin-top:32px; }
+  .hero__media { position:relative; display:flex; align-items:center; justify-content:center; }
+  .hero__photo { aspect-ratio:4/5; width:100%; }
+  .hero__photo .photo-cap { background:linear-gradient(transparent, rgba(244,239,232,.85)); }
+  .hero__badge {
+    position:absolute; top:-12px; left:-12px;
+    background:var(--primary); color:#fff;
+    padding:10px 14px;
+    font-family:var(--mono); font-size:10px; letter-spacing:.16em;
+    transform:rotate(-3deg);
+  }
+  @media (min-width: 900px){
+    .hero { padding:56px 0 120px; }
+    .hero__grid { grid-template-columns:1fr 1fr; gap:64px; }
+    .hero__photo { aspect-ratio:4/5; }
+  }
+
+  /* Timeline (dentro de Historia) */
+  .timeline { margin-top:64px; }
+  .tl-item {
+    display:grid; grid-template-columns:auto 1fr; gap:20px;
+    padding:24px 0; border-top:1px solid var(--line);
+  }
+  .tl-year { font-family:var(--display); font-size:clamp(28px, 3.5vw, 40px); color:var(--primary); line-height:1; min-width:80px; }
+  .tl-title { font-family:var(--display); font-size:clamp(22px, 2.4vw, 28px); line-height:1; margin:0 0 8px; }
+  .tl-body { font-size:14px; color:var(--ink-soft); line-height:1.6; margin:0; max-width:60ch; }
+  @media (min-width: 700px){
+    .tl-item { grid-template-columns:140px 1fr; gap:40px; }
+  }
+
+  /* ─── Section patterns ───────────────────────────────────────── */
+  .section { padding:96px 0; border-top:1px solid var(--line); }
+  .section--dark { background:var(--ink); color:var(--paper); border-color:transparent; }
+  .section--dark .mono { color:rgba(241,236,226,.6); }
+  .section--dark .display { color:var(--paper); }
+  .section--primary { background:var(--primary); color:#fff; border-color:transparent; }
+  .section--primary .mono { color:rgba(255,255,255,.7); }
+  .section--primary .display { color:#fff; }
+  .section__label { margin-bottom:14px; }
+  .section__title { font-size:clamp(48px, 7vw, 96px); margin-bottom:20px; }
+  .section__lede { font-size:clamp(14px, 1.2vw, 16px); color:var(--ink-soft); max-width:60ch; line-height:1.6; }
+  .section--dark .section__lede,
+  .section--primary .section__lede { color:rgba(255,255,255,.85); }
+
+  .grid-two { display:grid; grid-template-columns:1fr; gap:32px; align-items:start; }
+  @media (min-width: 900px){ .grid-two { grid-template-columns:1fr 1fr; gap:64px; } }
+
+  /* ─── Café (sección dark) ────────────────────────────────────── */
+  .cafe-grid { display:grid; grid-template-columns:1fr; gap:40px; margin-top:48px; align-items:center; }
+  .cafe-list { display:grid; grid-template-columns:1fr; }
+  .cafe-item {
+    display:grid; grid-template-columns:auto 1fr auto; gap:20px;
+    padding:24px 0; border-top:1px solid rgba(244,239,232,.16);
+    align-items:baseline;
+  }
+  .cafe-item__n { font-family:var(--mono); font-size:11px; opacity:.6; letter-spacing:.1em; min-width:36px; }
+  .cafe-item__name { font-family:var(--display); font-size:clamp(22px, 2.4vw, 28px); line-height:1; color:var(--paper); }
+  .cafe-item__desc { font-size:13px; color:rgba(244,239,232,.65); margin-top:4px; max-width:42ch; }
+  .cafe-item__price { font-family:var(--mono); font-size:14px; color:#fff; opacity:.9; }
+  .cafe-media { display:block; }
+  .cafe-media .photo { aspect-ratio:1/1; width:100%; }
+  @media (min-width: 900px){
+    .cafe-grid { grid-template-columns:1fr 1fr; gap:80px; }
+  }
+
+  /* ─── Masa madre (proceso) ───────────────────────────────────── */
+  .mm-hero { display:grid; grid-template-columns:1fr; gap:32px; margin-top:48px; }
+  .mm-hero .photo { aspect-ratio:4/3; }
+  .mm-stats { display:grid; grid-template-columns:1fr; gap:24px; margin-top:32px; }
+  .mm-stat {
+    display:grid; grid-template-columns:auto 1fr; gap:24px;
+    align-items:center;
+    padding:20px 0; border-top:1px solid var(--line);
+  }
+  .mm-stat:last-child { border-bottom:1px solid var(--line); }
+  .mm-stat__num { font-family:var(--display); font-size:clamp(48px, 6vw, 72px); color:var(--primary); line-height:1; min-width:180px; }
+  .mm-stat__label { font-family:var(--mono); font-size:12px; letter-spacing:.1em; color:var(--ink-soft); text-transform:uppercase; }
+  .process { display:grid; grid-template-columns:1fr; gap:0; margin-top:64px; }
+  .process__step {
+    display:grid; grid-template-columns:auto 1fr; gap:20px;
+    padding:24px 0; border-top:1px solid var(--line);
+  }
+  .process__num { font-family:var(--display); font-size:32px; color:var(--primary); line-height:1; min-width:48px; }
+  .process__title { font-family:var(--display); font-size:24px; line-height:1; margin:0 0 6px; }
+  .process__body { font-size:13px; color:var(--ink-soft); margin:0; max-width:50ch; line-height:1.55; }
+  @media (min-width: 900px){
+    .mm-hero { grid-template-columns:1.1fr .9fr; gap:64px; align-items:center; }
+  }
+
+  /* ─── Locales · mapa interactivo + lista ─────────────────────── */
+  .map-wrap {
+    display:grid; grid-template-columns:1fr; gap:40px; margin-top:48px;
+  }
+  .map {
+    position:relative; aspect-ratio:1/1;
+    background:var(--placeholder); border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .map svg.map__bg { position:absolute; inset:0; width:100%; height:100%; }
+  .map-pin {
+    position:absolute; transform:translate(-50%, -100%);
+    display:flex; flex-direction:column-reverse; align-items:center; gap:6px;
+    padding:0; background:transparent;
+  }
+  .map-pin__dot {
+    width:14px; height:14px; border-radius:50%;
+    background:var(--ink); border:2px solid var(--paper);
+    transition:all .25s ease;
+    box-shadow:0 0 0 0 rgba(27,90,117,0);
+  }
+  .map-pin:hover .map-pin__dot { background:var(--primary); transform:scale(1.15); }
+  .map-pin.is-active .map-pin__dot {
+    width:22px; height:22px; background:var(--primary);
+    box-shadow:0 0 0 6px rgba(27,90,117,.2);
+    animation:pinPulse 2s ease-in-out infinite;
+  }
+  @keyframes pinPulse {
+    0%,100% { box-shadow:0 0 0 6px rgba(27,90,117,.2); }
+    50%     { box-shadow:0 0 0 12px rgba(27,90,117,0); }
+  }
+  .map-pin__label {
+    font-family:var(--display); font-size:11px; letter-spacing:.04em;
+    color:var(--primary);
+    background:var(--paper); padding:4px 8px; border:1px solid var(--line);
+    white-space:nowrap; opacity:0; transition:opacity .2s ease;
+    transform:translateY(-4px);
+  }
+  .map-pin.is-active .map-pin__label,
+  .map-pin:hover .map-pin__label { opacity:1; }
+  .map__compass {
+    position:absolute; bottom:12px; right:12px;
+    font-family:var(--mono); font-size:10px; color:var(--ink-soft); letter-spacing:.1em;
+  }
+  .map__legend {
+    position:absolute; top:12px; left:12px;
+    font-family:var(--mono); font-size:9px; color:var(--ink-soft);
+    letter-spacing:.12em; text-transform:uppercase;
+    background:rgba(244,239,232,.7); padding:6px 10px; border:1px solid var(--line);
+  }
+
+  .loc-detail__head {
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:24px; margin-bottom:16px;
+  }
+  .loc-detail__name {
+    font-family:var(--display); font-size:clamp(36px, 5vw, 56px);
+    line-height:1; margin:0;
+  }
+  .loc-detail__est {
+    font-family:var(--mono); font-size:10px; color:var(--ink-soft);
+    letter-spacing:.1em; text-transform:uppercase; white-space:nowrap;
+  }
+  .loc-detail__photo { aspect-ratio:3/2; margin-bottom:24px; }
+  .loc-detail__quote {
+    font-size:16px; font-style:italic; color:var(--ink-soft);
+    line-height:1.5; max-width:50ch; margin:0 0 24px;
+    padding-left:16px; border-left:2px solid var(--primary);
+  }
+  .loc-info {
+    display:grid; grid-template-columns:auto 1fr; gap:12px 24px;
+    margin:24px 0; font-size:14px;
+  }
+  .loc-info dt {
+    font-family:var(--mono); font-size:10px; letter-spacing:.08em;
+    color:var(--ink-soft); text-transform:uppercase;
+  }
+  .loc-info dd { margin:0; }
+  .loc-detail__fade {
+    animation:fadeSwap .35s ease;
+  }
+  @keyframes fadeSwap {
+    from { opacity:0; transform:translateY(8px); }
+    to   { opacity:1; transform:none; }
+  }
+
+  @media (min-width: 1000px){
+    .map-wrap { grid-template-columns:1.05fr 1fr; gap:64px; }
+  }
+
+  .loc-grid { display:grid; grid-template-columns:1fr; gap:0; margin-top:64px; }
+  .loc-row {
+    border-top:1px solid var(--line);
+  }
+  .loc-row__head {
+    display:grid; grid-template-columns:1fr auto auto; gap:8px 24px;
+    padding:28px 0; align-items:baseline; cursor:pointer;
+    transition:padding-left .2s ease, color .2s ease;
+    width:100%; text-align:left;
+  }
+  .loc-row__head:hover { padding-left:12px; }
+  .loc-row.is-open .loc-row__head { padding-left:16px; }
+  .loc-row.is-open .loc-row__name { color:var(--primary); }
+  .loc-row__name { font-family:var(--display); font-size:clamp(28px, 4vw, 44px); line-height:1; transition:color .2s ease; }
+  .loc-row__addr { font-size:13px; color:var(--ink-soft); margin-top:6px; }
+  .loc-row__hrs { font-family:var(--mono); font-size:11px; color:var(--primary); letter-spacing:.06em; text-align:right; }
+  .loc-row__city { font-family:var(--mono); font-size:10px; color:var(--ink-mute); letter-spacing:.08em; margin-top:4px; text-align:right; }
+  .loc-row__caret {
+    font-family:var(--display); font-size:22px; color:var(--ink);
+    transition:transform .3s ease;
+    align-self:center; padding-left:8px;
+  }
+  .loc-row.is-open .loc-row__caret { transform:rotate(180deg); color:var(--primary); }
+
+  /* Accordion panel */
+  .loc-row {
+    transition:background .4s ease;
+  }
+  .loc-row.is-open {
+    background:rgba(27,90,117,.04);
+  }
+  .loc-row__panel {
+    display:grid; grid-template-rows:0fr;
+    transition:grid-template-rows .4s cubic-bezier(.2,.7,.2,1);
+  }
+  .loc-row.is-open .loc-row__panel { grid-template-rows:1fr; }
+  .loc-row__panel > div { overflow:hidden; }
+  .loc-row__panel-inner {
+    padding:8px 0 36px;
+    display:grid; grid-template-columns:1fr; gap:24px;
+    opacity:0; transform:translateY(8px);
+    transition:opacity .35s ease .12s, transform .35s ease .12s;
+  }
+  .loc-row.is-open .loc-row__panel-inner { opacity:1; transform:none; }
+  .loc-row__photo {
+    aspect-ratio:4/3; min-height:200px;
+  }
+  .loc-row__content {
+    display:flex; flex-direction:column; gap:20px;
+    min-height:100%;
+  }
+  .loc-row__note {
+    font-size:15px; color:var(--ink-soft); line-height:1.55; margin:0;
+    padding-left:16px; border-left:2px solid var(--primary);
+    font-style:italic; max-width:60ch;
+  }
+  .loc-row__info {
+    display:grid; grid-template-columns:auto 1fr; gap:8px 24px;
+    font-size:14px; margin:0;
+  }
+  .loc-row__info dt { font-family:var(--mono); font-size:10px; letter-spacing:.08em; color:var(--ink-soft); text-transform:uppercase; align-self:center; }
+  .loc-row__info dd { margin:0; color:var(--ink); }
+  .loc-row__foot {
+    display:flex; justify-content:flex-end; margin-top:auto; padding-top:8px;
+  }
+  .loc-row__cta {
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 22px;
+    font-family:var(--display); font-size:16px; letter-spacing:.04em;
+    background:var(--ink); color:var(--paper);
+    transition:background .15s ease, gap .15s ease;
+  }
+  .loc-row__cta:hover { background:var(--primary); gap:14px; }
+  .loc-row__cta svg { width:16px; height:16px; }
+  @media (min-width: 800px){
+    .loc-row__panel-inner { grid-template-columns:1fr 1.2fr; align-items:stretch; gap:48px; }
+    .loc-row__photo { aspect-ratio:auto; height:100%; }
+  }
+
+  /* ─── Blog (cards horizontales) ──────────────────────────────── */
+  .blog-list { display:grid; grid-template-columns:1fr; gap:24px; margin-top:48px; }
+  .blog-card {
+    display:grid; grid-template-columns:1fr; gap:0;
+    border:1px solid var(--line); background:#fff;
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  .blog-card:hover { transform:translateY(-4px); border-color:var(--ink); }
+  .blog-card__media { aspect-ratio:16/10; position:relative; }
+  .blog-card__body {
+    padding:28px; display:flex; flex-direction:column; gap:16px;
+  }
+  .blog-card__meta { display:flex; gap:14px; align-items:center; }
+  .blog-card__date { font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--ink-mute); text-transform:uppercase; }
+  .blog-card__cat {
+    font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--primary);
+    text-transform:uppercase; padding:3px 8px; border:1px solid currentColor;
+  }
+  .blog-card__title {
+    font-family:var(--display); font-size:clamp(26px, 2.6vw, 34px);
+    line-height:1; letter-spacing:.005em; margin:0;
+  }
+  .blog-card__excerpt { font-size:14px; color:var(--ink-soft); line-height:1.55; margin:0; }
+  .blog-card__foot {
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:auto; padding-top:8px;
+  }
+  .blog-card__author { font-family:var(--mono); font-size:11px; color:var(--ink-mute); letter-spacing:.06em; }
+  .blog-card__read {
+    font-family:var(--display); font-size:15px; letter-spacing:.06em;
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 18px; background:var(--ink); color:var(--paper);
+    transition: background .15s ease;
+  }
+  .blog-card:hover .blog-card__read { background:var(--primary); }
+  @media (min-width: 800px){
+    .blog-card { grid-template-columns: 0.85fr 1fr; }
+    .blog-card__media { aspect-ratio:auto; height:100%; min-height:280px; }
+  }
+  .blog-more {
+    margin-top:48px; display:flex; justify-content:center;
+    padding-top:32px; border-top:1px solid var(--line);
+  }
+
+  /* ─── Trabajá ────────────────────────────────────────────────── */
+  .jobs { margin-top:48px; }
+  .job {
+    display:grid; grid-template-columns:1fr auto; gap:8px 24px;
+    padding:28px 0; border-top:1px solid var(--line);
+    align-items:baseline; cursor:pointer; transition:padding-left .2s ease;
+  }
+  .job:hover { padding-left:12px; }
+  .job__role { font-family:var(--display); font-size:clamp(24px, 3vw, 32px); line-height:1; }
+  .job__meta { font-family:var(--mono); font-size:11px; color:var(--ink-soft); letter-spacing:.06em; margin-top:8px; display:flex; gap:10px; flex-wrap:wrap; }
+  .job__arrow { font-family:var(--mono); color:var(--primary); font-size:20px; }
+  .jobs-note {
+    background:var(--placeholder); border:1px solid var(--line);
+    padding:24px; margin-top:40px; max-width:60ch; font-size:14px; line-height:1.6;
+  }
+  .jobs-note a { color:var(--primary); font-family:var(--mono); }
+
+  /* ─── Contacto ───────────────────────────────────────────────── */
+  .contact-grid { display:grid; grid-template-columns:1fr; gap:48px; margin-top:48px; }
+  .form > * + * { margin-top:24px; }
+  .form-row label {
+    display:block; font-family:var(--mono); font-size:11px; letter-spacing:.1em;
+    color:rgba(255,255,255,.75); margin-bottom:8px; text-transform:uppercase;
+  }
+  .form-row input, .form-row textarea {
+    width:100%; padding:12px 0;
+    background:transparent; border:0; border-bottom:1px solid rgba(255,255,255,.4);
+    font-family:var(--body); font-size:16px; color:#fff; outline:none; resize:none;
+    transition:border-color .15s ease;
+  }
+  .form-row input::placeholder, .form-row textarea::placeholder { color:rgba(255,255,255,.45); }
+  .form-row input:focus, .form-row textarea:focus { border-bottom-color:#fff; }
+  .chip-group { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .chip {
+    padding:10px 14px; font-size:12px;
+    border:1px solid rgba(255,255,255,.3); color:#fff; background:transparent;
+    transition:all .15s ease;
+  }
+  .chip.is-active { background:#fff; color:var(--primary); border-color:#fff; }
+  .contact-info dt { font-family:var(--mono); font-size:10px; letter-spacing:.08em; color:rgba(255,255,255,.65); margin-bottom:4px; text-transform:uppercase; }
+  .contact-info dd { margin:0 0 22px; font-size:15px; color:#fff; }
+  @media (min-width: 900px){
+    .contact-grid { grid-template-columns:1.4fr 1fr; gap:80px; align-items:start; }
+  }
+
+  /* ─── Footer ─────────────────────────────────────────────────── */
+  footer { background:var(--ink); color:var(--paper); padding:80px 0 32px; }
+  .foot__title {
+    font-family:var(--display); font-size:clamp(56px, 9vw, 140px);
+    line-height:.92; letter-spacing:.005em;
+  }
+  .foot__cols {
+    display:grid; grid-template-columns:1fr 1fr; gap:32px 24px;
+    margin:64px 0 40px;
+  }
+  .foot__cols h5 {
+    font-family:var(--mono); font-size:10px; letter-spacing:.12em;
+    opacity:.6; margin:0 0 12px; text-transform:uppercase;
+  }
+  .foot__cols a { display:block; padding:5px 0; font-size:14px; color:var(--paper); }
+  .foot__cols a:hover { color:var(--primary); }
+  .foot__social {
+    display:flex; gap:16px; align-items:center; flex-wrap:wrap;
+  }
+  .foot__social a {
+    width:36px; height:36px;
+    display:inline-flex; align-items:center; justify-content:center;
+    border:1px solid rgba(244,239,232,.2); color:var(--paper);
+    transition: background .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .foot__social a:hover { background:var(--primary); border-color:var(--primary); color:#fff; }
+  .foot__social svg { width:16px; height:16px; }
+  .foot__legal {
+    border-top:1px solid rgba(244,239,232,.18); padding-top:24px;
+    font-family:var(--mono); font-size:10px; letter-spacing:.08em;
+    opacity:.55; line-height:1.7;
+    display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  @media (min-width: 800px){
+    .foot__cols { grid-template-columns:repeat(4, 1fr); }
+  }
+
+  /* ─── Reveal on scroll (tomado del archivo de referencia) ────── */
+  .reveal { opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.is-in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    .reveal { opacity:1; transform:none; }
+    * { transition:none !important; animation:none !important; }
+  }
+</style>
+
+<style>
+  /* ─── Detalle (blog / receta) ─────────────────────────────────── */
+  .doc-nav { position:sticky; top:0; z-index:50; background:rgba(244,239,232,.92); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .doc-nav__inner { max-width:var(--container); margin:0 auto; padding:16px var(--gutter); display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .doc-nav .brand { font-size:22px; }
+  .doc-back { display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); transition:color .15s ease; }
+  .doc-back:hover { color:var(--primary); }
+
+  .doc-main { padding:48px 0 96px; }
+  .article__head { padding:8px 0 36px; }
+  .article__meta { display:flex; gap:14px; align-items:center; margin-bottom:24px; }
+  .article__title { font-size:clamp(40px, 6vw, 84px); line-height:.92; margin:0 0 24px; max-width:20ch; text-wrap:balance; }
+  .article__sub { font-family:var(--body); font-size:clamp(17px, 1.8vw, 22px); font-weight:400; color:var(--ink-soft); line-height:1.5; max-width:62ch; margin:0; }
+  .article__byline { display:flex; flex-wrap:wrap; gap:10px 24px; align-items:center; margin-top:32px; padding-top:24px; border-top:1px solid var(--line); }
+  .article__byline span { font-family:var(--mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-mute); }
+  .article__byline span.is-lead { color:var(--ink); }
+  .article__hero { aspect-ratio:21/9; margin:8px 0 56px; }
+  @media (max-width:700px){ .article__hero{ aspect-ratio:4/3; } }
+
+  .prose { max-width:68ch; margin:0 auto; font-size:18px; line-height:1.75; color:var(--ink-soft); }
+  .prose p { margin:0 0 28px; }
+  .prose p:first-of-type::first-letter { font-family:var(--display); font-size:64px; float:left; line-height:.78; padding:6px 14px 0 0; color:var(--primary); }
+  .prose h2 { font-family:var(--display); font-size:clamp(26px, 3vw, 38px); color:var(--ink); line-height:1.04; letter-spacing:.005em; margin:48px 0 18px; }
+  .prose strong { color:var(--ink); font-weight:600; }
+  .pullquote { font-family:var(--display); font-size:clamp(26px, 3.2vw, 42px); line-height:1.06; color:var(--primary); margin:44px 0; padding-left:24px; border-left:3px solid var(--primary); letter-spacing:.005em; }
+  .article__foot { max-width:68ch; margin:56px auto 0; padding-top:32px; border-top:1px solid var(--line); display:flex; justify-content:center; }
+
+  /* receta */
+  .recipe-facts { display:grid; grid-template-columns:repeat(2,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:0 0 56px; }
+  @media (min-width:700px){ .recipe-facts{ grid-template-columns:repeat(4,1fr); } }
+  .recipe-fact { padding:24px 24px 24px 0; }
+  .recipe-fact__label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:8px; }
+  .recipe-fact__val { font-family:var(--display); font-size:clamp(22px,2.4vw,30px); color:var(--ink); line-height:1; }
+  .recipe__layout { display:grid; grid-template-columns:1fr; gap:48px; }
+  @media (min-width:900px){ .recipe__layout{ grid-template-columns:.82fr 1.18fr; gap:72px; align-items:start; } .recipe__sticky{ position:sticky; top:96px; } }
+  .recipe__coltitle { font-size:12px; color:var(--primary); margin-bottom:20px; padding-bottom:14px; border-bottom:1px solid var(--line); }
+  .ing-list { list-style:none; padding:0; margin:0; }
+  .ing-list li { display:flex; justify-content:space-between; gap:16px; align-items:baseline; padding:14px 0; border-bottom:1px solid var(--line-soft); font-size:16px; color:var(--ink); }
+  .ing-list li span:last-child { font-family:var(--mono); font-size:13px; color:var(--ink-mute); white-space:nowrap; }
+  .steps { list-style:none; padding:0; margin:0; counter-reset:step; }
+  .steps li { position:relative; padding-left:60px; margin-bottom:32px; font-size:17px; line-height:1.7; color:var(--ink-soft); min-height:40px; }
+  .steps li::before { counter-increment:step; content:counter(step,decimal-leading-zero); position:absolute; left:0; top:-2px; font-family:var(--display); font-size:30px; color:var(--primary); line-height:1; }
+  .recipe__note { margin-top:48px; padding:28px; border:1px solid var(--line); background:#fff; }
+  .recipe__note .mono { color:var(--primary); margin-bottom:10px; }
+  .recipe__note p { margin:0; font-size:15px; color:var(--ink-soft); line-height:1.6; }
+</style>
+<style>
+  .view { display:none; }
+  .view.is-active { display:block; }
+  [data-recipe-form] input::placeholder, [data-recipe-form] textarea::placeholder { color: rgba(255,255,255,.45); }
+  [data-upload]:hover { border-color:#fff !important; background:rgba(255,255,255,.06) !important; }
+  .blog-index__bar { display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; margin:8px 0 0; }
+  .blog-index__bar .mono { color:var(--ink-soft); }
+  .blog-index__bar .mono.is-mute { color:var(--ink-mute); }
+</style>
+</head>
+<body>
+
+<div class="view is-active" id="view-home">
+
+
+
+
+<!-- ═══════ Mascot (símbolo reutilizable) ════════════════════════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mascot" viewBox="0 0 100 110">
+    <path fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" d="M28 40 C28 18, 46 12, 52 22 L52 50 M52 22 C56 14, 70 14, 70 28 L70 50 M70 32 C76 26, 86 30, 86 42 L86 60 C86 84, 70 100, 50 100 C30 100, 18 86, 18 66 L18 52 C18 42, 28 40, 28 50 L28 64"></path>
+    <circle cx="40" cy="58" r="11" fill="none" stroke="currentColor" stroke-width="3"></circle>
+    <path d="M37 58 L43 58" stroke="currentColor" stroke-width="2.5"></path>
+  </symbol>
+  <!-- ─── Iconos de redes (monoline originales) ─────────────────── -->
+  <symbol id="ic-ig" viewBox="0 0 24 24">
+    <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+    <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+    <circle cx="17.2" cy="6.8" r="1" fill="currentColor"></circle>
+  </symbol>
+  <symbol id="ic-tt" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" d="M14 3.5 v10.8 a3.7 3.7 0 1 1 -3.7 -3.7 M14 3.5 c.4 2.5 2.4 4.2 4.8 4.4"></path>
+  </symbol>
+  <symbol id="ic-sp" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+    <path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M7.5 9.5 c3.2 -0.8 6.5 -0.3 9 1.1 M8 12.6 c2.6 -0.6 5.2 -0.2 7.3 1 M8.6 15.4 c2 -0.4 4 -0.1 5.6 0.9"></path>
+  </symbol>
+  <symbol id="ic-yt" viewBox="0 0 24 24">
+    <rect x="2.5" y="6" width="19" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+    <path d="M10.5 9.5 L15 12 L10.5 14.5 Z" fill="currentColor"></path>
+  </symbol>
+</svg>
+
+<!-- ═══════ Nav sticky ═══════════════════════════════════════════════ -->
+<!-- Future Next.js: <Navbar /> componente con Sanity para links + redes -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#historia" class="brand" aria-label="Perdú · ir al inicio">
+      <span class="brand__mark"><svg width="22" height="24"><use href="#mascot"></use></svg></span>
+      PERDÚ<small>PANADERÍA</small>
+    </a>
+    <nav class="nav__links" aria-label="Navegación principal">
+      <a href="#historia">Historia</a>
+      <a href="#cafe">Café</a>
+      <a href="#masa-madre">Masa madre</a>
+      <a href="#locales">Locales</a>
+      <a href="#blog">Blog</a>
+      <a href="#recetario">Recetario</a>
+      <a href="#trabaja">Trabajá</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="nav__social" aria-label="Redes sociales">
+      <a href="#" aria-label="Instagram"><svg><use href="#ic-ig"></use></svg></a>
+      <a href="#" aria-label="TikTok"><svg><use href="#ic-tt"></use></svg></a>
+      <a href="#" aria-label="Spotify"><svg><use href="#ic-sp"></use></svg></a>
+      <a href="#" aria-label="YouTube"><svg><use href="#ic-yt"></use></svg></a>
+    </div>
+    <button class="nav__burger" id="burger" aria-label="Abrir menú"><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ─── Drawer mobile ─────────────────────────────────────────────── -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer__scrim" data-close=""></div>
+  <aside class="drawer__panel" role="dialog" aria-label="Menú">
+    <div class="drawer__head">
+      <span class="mono">Menú · Córdoba, AR</span>
+      <button class="drawer__close" data-close="" aria-label="Cerrar">×</button>
+    </div>
+    <nav class="drawer__list">
+      <a href="#historia" data-close=""><span>01</span><span>Historia</span></a>
+      <a href="#cafe" data-close=""><span>02</span><span>Café</span></a>
+      <a href="#masa-madre" data-close=""><span>03</span><span>Masa madre</span></a>
+      <a href="#locales" data-close=""><span>04</span><span>Locales</span></a>
+      <a href="#blog" data-close=""><span>05</span><span>Blog</span></a>
+      <a href="#recetario" data-close=""><span>06</span><span>Recetario</span></a>
+      <a href="#trabaja" data-close=""><span>07</span><span>Trabajá</span></a>
+      <a href="#contacto" data-close=""><span>08</span><span>Contacto</span></a>
+    </nav>
+    <div class="drawer__social">
+      <a href="#" aria-label="Instagram"><svg><use href="#ic-ig"></use></svg></a>
+      <a href="#" aria-label="TikTok"><svg><use href="#ic-tt"></use></svg></a>
+      <a href="#" aria-label="Spotify"><svg><use href="#ic-sp"></use></svg></a>
+      <a href="#" aria-label="YouTube"><svg><use href="#ic-yt"></use></svg></a>
+      <span style="margin-left:auto; color:var(--primary);"><svg width="44" height="48"><use href="#mascot"></use></svg></span>
+    </div>
+  </aside>
+</div>
+
+<main>
+
+<!-- ═══════ 1 · HISTORIA (hero) ═════════════════════════════════════ -->
+<!-- Future route: /historia o sección de la home en Next.js + Sanity -->
+<section id="historia" class="hero">
+  <div class="wrap">
+    <div class="hero__meta mono reveal">
+      <span>Vol. 07 — Otoño 26</span>
+      <span>Córdoba · AR · Est. 2018</span>
+    </div>
+    <div class="hero__grid" style="text-align: left">
+      <div class="reveal">
+        <h1 class="display hero__title">
+          PAN<br>HONESTO<br><span class="accent">DESDE</span><br>2018.
+        </h1>
+        <p class="hero__sub">
+          Una panadería de barrio que se hizo grande sin perder la esquina.
+          Masa madre, fermentaciones largas, manteca de verdad — y la mano
+          que dice <em>todo bien</em>.
+        </p>
+        <div class="hero__cta">
+          <a href="#cafe" class="btn">VER LA CARTA →</a>
+          <a href="#locales" class="btn btn--ghost">Encontrá un Perdú</a>
+        </div>
+      </div>
+      <div class="hero__media reveal">
+        <div class="photo photo--warm hero__photo">
+          <div class="photo-id" style="align-items: center">HERO · Mostrador con panes recién horneados</div>
+          <div class="photo-cap">
+            <span>FIG. 01 — HORNO PRINCIPAL, GÜEMES</span>
+            <span>05:42 AM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline editorial -->
+    <div class="timeline">
+      <div class="mono section__label accent reveal">↳ Cómo llegamos hasta acá</div>
+      <div class="tl-item reveal" style="text-align: left">
+        <div class="tl-year">2018</div>
+        <div>
+          <h3 class="tl-title">Una cocina de 9 m²</h3>
+          <p class="tl-body">Mariano y Lucía empiezan a hacer pan de masa madre los fines de semana en un departamento de Güemes. La fila de vecinos da la vuelta a la cuadra.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">2019</div>
+        <div>
+          <h3 class="tl-title">El primer local</h3>
+          <p class="tl-body">Un garaje reciclado en Achával Rodríguez 240. Un horno, dos mesadas, y un cartel hecho a mano.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">2022</div>
+        <div>
+          <h3 class="tl-title">Llega el café</h3>
+          <p class="tl-body">Sumamos cafetería de especialidad: granos de origen, baristas formados y leche de tambo local.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">2024</div>
+        <div>
+          <h3 class="tl-title">5 locales en la ciudad</h3>
+          <p class="tl-body">Cerro, Centro, Alta Córdoba. Todos con masa madre del mismo iniciador del 2018.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">2026</div>
+        <div>
+          <h3 class="tl-title">Hoy</h3>
+          <p class="tl-body">120 personas trabajan en Perdú. Seguimos abriendo el horno a las 4:30 AM.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 2 · CAFÉ ════════════════════════════════════════════════ -->
+<!-- Future route: /cafe en Next.js con Sanity para carta dinámica -->
+<section id="cafe" class="section section--dark">
+  <div class="wrap">
+    <div class="mono section__label reveal" style="margin-bottom: 36px;">02 — CAFÉ DE ESPECIALIDAD</div>
+    <h2 class="display section__title reveal" style="color: rgb(244, 239, 232)">CAFÈ DE <span style="color: rgb(27, 90, 117)">ESPECIALIDAD</span><span style="color: rgb(255, 255, 255)"></span><span style="color: rgb(27, 90, 117)"></span></h2>
+    <p class="section__lede reveal">
+      Tostado semanal en Córdoba. Recetas para llevar y para quedarse.
+      Baristas formados en casa: cada barra se entrena igual.
+    </p>
+
+    <div class="cafe-grid">
+      <div class="cafe-list reveal">
+        <div class="cafe-item">
+          <div class="cafe-item__n">N°01</div>
+          <div>
+            <div class="cafe-item__name">Espresso</div>
+            <div class="cafe-item__desc">Doble shot · blend de la casa</div>
+          </div>
+          <div class="cafe-item__price">$1.400</div>
+        </div>
+        <div class="cafe-item">
+          <div class="cafe-item__n">N°02</div>
+          <div>
+            <div class="cafe-item__name">Cortado</div>
+            <div class="cafe-item__desc">Leche de tambo local · 150 ml</div>
+          </div>
+          <div class="cafe-item__price">
+</div>
+        </div>
+        <div class="cafe-item">
+          <div class="cafe-item__n">N°03</div>
+          <div>
+            <div class="cafe-item__name">Flat white</div>
+            <div class="cafe-item__desc">180 ml · doble ristretto</div>
+          </div>
+          <div class="cafe-item__price">
+</div>
+        </div>
+        <div class="cafe-item">
+          <div class="cafe-item__n">N°04</div>
+          <div>
+            <div class="cafe-item__name">Filtrado del día</div>
+            <div class="cafe-item__desc">Origen rotativo · V60 o Chemex</div>
+          </div>
+          <div class="cafe-item__price">
+</div>
+        </div>
+        <div class="cafe-item">
+          <div class="cafe-item__n">N°05</div>
+          <div>
+            <div class="cafe-item__name">Cold brew</div>
+            <div class="cafe-item__desc">18 hs en frío · sin azúcar</div>
+          </div>
+          <div class="cafe-item__price">
+</div>
+        </div>
+      </div>
+      <div class="cafe-media reveal">
+        <div class="photo photo--warm">
+          <div class="photo-id">Barista · Latte art</div>
+          <div class="photo-cap">
+            <span>FIG. 02 — BARRA DE CÁFE</span>
+            <span>TOSTADO SEMANAL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 3 · MASA MADRE ══════════════════════════════════════════ -->
+<!-- Future route: /masa-madre con Sanity para los pasos del proceso -->
+<section id="masa-madre" class="section">
+  <div class="wrap">
+    <div class="mono section__label reveal">03 — MASA MADRE</div>
+    <h2 class="display section__title reveal">
+      72 HORAS,<br>UNA SOLA <span class="accent">CEPA</span>.
+    </h2>
+    <p class="section__lede reveal">
+      El iniciador es del 2018. Lo alimentamos todos los días con harina criolla
+      y agua filtrada. De ahí salen todos los panes de la casa.
+    </p>
+
+    <div class="mm-hero">
+      <div class="reveal">
+        <div class="mm-stats">
+          <div class="mm-stat">
+            <div class="mm-stat__num">72<span style="font-size:.5em;">h</span></div>
+            <div class="mm-stat__label">Fermentación en frío</div>
+          </div>
+          <div class="mm-stat">
+            <div class="mm-stat__num">8<span style="font-size:.5em;">años</span></div>
+            <div class="mm-stat__label">Iniciador vivo</div>
+          </div>
+          <div class="mm-stat">
+            <div class="mm-stat__num">04:30</div>
+            <div class="mm-stat__label">Encendido del horno</div>
+          </div>
+          <div class="mm-stat">
+            <div class="mm-stat__num">0<span style="font-size:.5em;">aditivos</span></div>
+            <div class="mm-stat__label">Solo harina, agua, sal</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="photo photo--warm">
+          <div class="photo-id">Masa madre · Corte de miga</div>
+          <div class="photo-cap">
+            <span>FIG. 02 — PAN DE CAMPO, 1 KG</span>
+            <span>72 HS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process">
+      <div class="mono accent reveal" style="padding-top:24px;">↳ El proceso, paso a paso</div>
+      <div class="process__step reveal">
+        <div class="process__num">01</div>
+        <div>
+          <h4 class="process__title">Refresco del iniciador</h4>
+          <p class="process__body">Lunes 04:30 AM. Alimentamos la cepa con harina criolla del molino vecino y agua de la ciudad filtrada.</p>
+        </div>
+      </div>
+      <div class="process__step reveal">
+        <div class="process__num">02</div>
+        <div>
+          <h4 class="process__title">Autolisis</h4>
+          <p class="process__body">Harina y agua descansan juntas dos horas. La enzima hace el trabajo silencioso.</p>
+        </div>
+      </div>
+      <div class="process__step reveal">
+        <div class="process__num">03</div>
+        <div>
+          <h4 class="process__title">Pliegues largos</h4>
+          <p class="process__body">Seis pliegues cada 45 minutos. Sin amasadora — solo mano y tiempo.</p>
+        </div>
+      </div>
+      <div class="process__step reveal">
+        <div class="process__num">04</div>
+        <div>
+          <h4 class="process__title">Fermentación en frío</h4>
+          <p class="process__body">48 a 72 horas en cámara a 4 °C. Ahí pasa todo: el sabor, la digestibilidad, los aromas.</p>
+        </div>
+      </div>
+      <div class="process__step reveal">
+        <div class="process__num">05</div>
+        <div>
+          <h4 class="process__title">Horno de piedra</h4>
+          <p class="process__body">240 °C con vapor los primeros 15 minutos. La corteza canta cuando sale.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 4 · LOCALES ═════════════════════════════════════════════ -->
+<!-- Future route: /locales en Next.js con Sanity para horarios + direcciones -->
+<section id="locales" class="section">
+  <div class="wrap">
+    <div class="mono section__label reveal">04 — LOCALES</div>
+    <h2 class="display section__title reveal">
+      5 ESQUINAS,<br>UN <span class="accent">MISMO</span> PAN.
+    </h2>
+    <p class="section__lede reveal">
+      Tocá un pin en el mapa para ver la foto, el horario y cómo llegar.
+      Todos abren a las 6 AM; todos cierran cuando se termina el pan.
+    </p>
+
+    <div class="map-wrap">
+      <!-- Mapa interactivo: pins inyectados por JS -->
+      <div class="map reveal" id="map" aria-label="Mapa de locales en Córdoba">
+        <svg class="map__bg" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <!-- río -->
+          <path d="M -5 75 Q 20 70, 35 78 T 70 72 T 110 80" stroke="var(--primary)" stroke-width=".6" fill="none" opacity=".4"></path>
+          <text x="78" y="74" font-size="2.2" fill="var(--ink-soft)" font-family="JetBrains Mono" opacity=".7">RÍO SUQUÍA</text>
+          <!-- grilla cartográfica -->
+          <g stroke="var(--line)" stroke-width=".2">
+            <line x1="10" y1="0" x2="10" y2="100"></line><line x1="20" y1="0" x2="20" y2="100"></line>
+            <line x1="30" y1="0" x2="30" y2="100"></line><line x1="40" y1="0" x2="40" y2="100"></line>
+            <line x1="50" y1="0" x2="50" y2="100" stroke-width=".5"></line>
+            <line x1="60" y1="0" x2="60" y2="100"></line><line x1="70" y1="0" x2="70" y2="100"></line>
+            <line x1="80" y1="0" x2="80" y2="100"></line><line x1="90" y1="0" x2="90" y2="100"></line>
+            <line x1="0" y1="10" x2="100" y2="10"></line><line x1="0" y1="20" x2="100" y2="20"></line>
+            <line x1="0" y1="30" x2="100" y2="30"></line><line x1="0" y1="40" x2="100" y2="40"></line>
+            <line x1="0" y1="50" x2="100" y2="50" stroke-width=".5"></line>
+            <line x1="0" y1="60" x2="100" y2="60"></line><line x1="0" y1="70" x2="100" y2="70"></line>
+            <line x1="0" y1="80" x2="100" y2="80"></line><line x1="0" y1="90" x2="100" y2="90"></line>
+          </g>
+        </svg>
+        <div class="map__legend">CÓRDOBA · CAPITAL</div>
+        <div class="map__compass">◉ 31°25'S 64°11'W</div>
+        <!-- pins inyectados acá -->
+      </div>
+
+      <!-- Panel lateral: foto + descripción del local activo -->
+      <div id="loc-detail" class="reveal" aria-live="polite"></div>
+    </div>
+
+    <h3 class="display reveal" style="margin:80px 0 0; font-size:clamp(22px, 2.4vw, 28px);">
+      TODOS LOS LOCALES
+    </h3>
+    <div class="loc-grid" id="loc-list"></div>
+  </div>
+</section>
+
+<!-- ═══════ 5 · BLOG ════════════════════════════════════════════════ -->
+<!-- Future route: /blog en Next.js con Sanity como fuente de datos -->
+<section id="blog" class="section">
+  <div class="wrap">
+    <div class="mono section__label reveal">05 — BLOG</div>
+    <h2 class="display section__title reveal">
+      DESDE EL <span class="accent">HORNO</span>.
+    </h2>
+    <p class="section__lede reveal">
+      Historias del oficio, recetas, ferias y la gente que hace la masa.
+    </p>
+
+    <div class="blog-list">
+      <!-- Future: <BlogCard data={posts[0]} /> con datos de Sanity -->
+      <article class="blog-card reveal">
+        <div class="photo photo--warm blog-card__media">
+          <div class="photo-id">Foto · Horno encendido al amanecer</div>
+        </div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta">
+            <span class="blog-card__cat">OFICIO</span>
+            <span class="blog-card__date">12 · MAY · 2026</span>
+          </div>
+          <h3 class="blog-card__title">Por qué fermentamos 72 horas, no 24</h3>
+          <p class="blog-card__excerpt">
+            La diferencia entre un pan que cae bien y uno que no está
+            en el tiempo. Te contamos qué pasa en cada hora de cámara fría
+            y por qué no hay manera de saltearse ese paso.
+          </p>
+          <div class="blog-card__foot">
+            <span class="blog-card__author">Lucía Bertotti · 4 min</span>
+            <a href="#!/articulo/fermentacion-72h" class="blog-card__read">LEER →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card reveal">
+        <div class="photo photo--cool blog-card__media">
+          <div class="photo-id">Foto · Cata de granos verdes</div>
+        </div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta">
+            <span class="blog-card__cat">CAFÉ</span>
+            <span class="blog-card__date">28 · ABR · 2026</span>
+          </div>
+          <h3 class="blog-card__title">Cómo elegimos el grano de la temporada</h3>
+          <p class="blog-card__excerpt">
+            Cinco viajes al año, dos catadores, un solo criterio: que se
+            banque la leche del tambo de Calchín. Crónica de la última
+            cosecha en Jujuy.
+          </p>
+          <div class="blog-card__foot">
+            <span class="blog-card__author">Mariano Roca · 6 min</span>
+            <a href="#!/articulo/grano-temporada" class="blog-card__read">LEER →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card reveal">
+        <div class="photo blog-card__media">
+          <div class="photo-id">Foto · Vecinos haciendo la fila los sábados</div>
+        </div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta">
+            <span class="blog-card__cat">BARRIO</span>
+            <span class="blog-card__date">03 · ABR · 2026</span>
+          </div>
+          <h3 class="blog-card__title">Lo que sobra, dónde va</h3>
+          <p class="blog-card__excerpt">
+            Cada noche cerramos con cero pan en mostrador. Te contamos
+            cómo coordinamos con tres comedores de Córdoba para que el
+            excedente esté caliente al otro día.
+          </p>
+          <div class="blog-card__foot">
+            <span class="blog-card__author">Equipo Perdú · 3 min</span>
+            <a href="#!/articulo/lo-que-sobra" class="blog-card__read">LEER →</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="blog-more reveal">
+      <a href="#!/blog" class="btn">VER MÁS NOTAS →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 6 · RECETARIO ═══════════════════════════════════════════ -->
+<!-- Future route: /recetario en Next.js · feed de "Recetas de la comunidad" -->
+<section id="recetario" class="section">
+  <div class="wrap">
+    <div class="mono section__label reveal">06 — RECETARIO</div>
+    <h2 class="display section__title reveal">
+      DE TU <span class="accent">COCINA</span>.
+    </h2>
+    <p class="section__lede reveal">
+      El recetario lo escribimos entre todos. Estas son las últimas tres recetas que nos mandaron los vecinos.
+    </p>
+
+    <div class="blog-list">
+      <article class="blog-card reveal">
+        <div class="photo photo--warm blog-card__media">
+          <div class="photo-id">Foto · Pan de campo cortado al medio</div>
+        </div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta">
+            <span class="blog-card__cat">PANES</span>
+            <span class="blog-card__date">11 · JUN · 2026</span>
+          </div>
+          <h3 class="blog-card__title">Pan de campo con masa madre</h3>
+          <p class="blog-card__excerpt">
+            Corteza gruesa y miga abierta. La masa madre del local hace casi
+            todo el trabajo; vos solo esperás las 18 horas de fermentación.
+          </p>
+          <div class="blog-card__foot">
+            <span class="blog-card__author">Por Sofía Ledesma</span>
+            <a href="#!/receta/pan-de-campo" class="blog-card__read">VER RECETA →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card reveal">
+        <div class="photo photo--cool blog-card__media">
+          <div class="photo-id">Foto · Medialunas recién pinceladas</div>
+        </div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta">
+            <span class="blog-card__cat">DULCES</span>
+            <span class="blog-card__date">06 · JUN · 2026</span>
+          </div>
+          <h3 class="blog-card__title">Medialunas de manteca</h3>
+          <p class="blog-card__excerpt">
+            El clásico de los domingos. Mucho laminado, manteca de verdad
+            y paciencia con los pliegues entre frío y frío.
+          </p>
+          <div class="blog-card__foot">
+            <span class="blog-card__author">Por Tomás Iriarte</span>
+            <a href="#!/receta/medialunas" class="blog-card__read">VER RECETA →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card reveal">
+        <div class="photo blog-card__media">
+          <div class="photo-id">Foto · Focaccia con romero y sal gruesa</div>
+        </div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta">
+            <span class="blog-card__cat">HORNO</span>
+            <span class="blog-card__date">31 · MAY · 2026</span>
+          </div>
+          <h3 class="blog-card__title">Focaccia de romero y oliva</h3>
+          <p class="blog-card__excerpt">
+            Hidratación alta, hoyitos con los dedos y buen aceite de oliva.
+            La más fácil para empezar a fermentar en casa.
+          </p>
+          <div class="blog-card__foot">
+            <span class="blog-card__author">Por Camila Ruiz</span>
+            <a href="#!/receta/focaccia" class="blog-card__read">VER RECETA →</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="blog-more reveal">
+      <a href="#!/comunidad" class="btn">VER TODAS LAS RECETAS →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 7 · TRABAJÁ CON NOSOTROS ════════════════════════════════ -->
+<!-- Future route: /trabaja en Next.js con Sanity para puestos abiertos -->
+<section id="trabaja" class="section">
+  <div class="wrap">
+    <div class="mono section__label reveal">07 — TRABAJÁ CON NOSOTROS</div>
+    <div class="grid-two" style="align-items:end;">
+      <h2 class="display section__title reveal">
+        BUSCAMOS<br><span class="accent">PANADEROS</span>.
+      </h2>
+      <p class="section__lede reveal">
+        Y baristas, atención al cliente, cocineros, cadetes.
+        La gente buena se queda. La que se queda crece.
+      </p>
+    </div>
+
+    <div class="jobs">
+      <a class="job reveal" href="#contacto">
+        <div>
+          <div class="job__role">Panadero/a senior</div>
+          <div class="job__meta"><span>GÜEMES</span><span>·</span><span>Full time</span><span>·</span><span>Madrugada</span></div>
+        </div>
+        <div class="job__arrow">→</div>
+      </a>
+      <a class="job reveal" href="#contacto">
+        <div>
+          <div class="job__role">Barista</div>
+          <div class="job__meta"><span>CERRO DE LAS ROSAS</span><span>·</span><span>Full time</span></div>
+        </div>
+        <div class="job__arrow">→</div>
+      </a>
+      <a class="job reveal" href="#contacto">
+        <div>
+          <div class="job__role">Atención al cliente</div>
+          <div class="job__meta"><span>NUEVA CÓRDOBA</span><span>·</span><span>Part time mañana</span></div>
+        </div>
+        <div class="job__arrow">→</div>
+      </a>
+      <a class="job reveal" href="#contacto">
+        <div>
+          <div class="job__role">Pastelero/a</div>
+          <div class="job__meta"><span>GÜEMES</span><span>·</span><span>Full time</span></div>
+        </div>
+        <div class="job__arrow">→</div>
+      </a>
+      <a class="job reveal" href="#contacto">
+        <div>
+          <div class="job__role">Cadete con moto</div>
+          <div class="job__meta"><span>ALTA CÓRDOBA</span><span>·</span><span>Mañanas</span></div>
+        </div>
+        <div class="job__arrow">→</div>
+      </a>
+    </div>
+
+    <div class="jobs-note reveal">
+      ¿No ves tu puesto? Mandanos tu historia a
+      <a href="mailto:trabaja@perdupanaderia.com.ar">trabaja@perdupanaderia.com.ar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 7 · CONTACTO ════════════════════════════════════════════ -->
+<!-- Future route: /contacto con server action o API route en Next.js -->
+<section id="contacto" class="section section--primary">
+  <div class="wrap">
+    <div class="mono section__label reveal">08 — CONTACTO</div>
+    <div style="color:#fff; margin:16px 0;" class="reveal"><svg width="56" height="62"><use href="#mascot"></use></svg></div>
+    <h2 class="display section__title reveal" style="color:#fff;">
+      ESCRIBINOS,<br>TE LEEMOS <span style="color:var(--paper); opacity:.85;">TODO</span>.
+    </h2>
+
+    <div class="contact-grid">
+      <form class="form reveal" id="contact-form" autocomplete="off">
+        <div class="form-row">
+          <label>¿Sobre qué nos escribís?</label>
+          <div class="chip-group" id="topic-chips" role="tablist">
+            <button type="button" class="chip is-active" data-topic="general">Consulta general</button>
+            <button type="button" class="chip" data-topic="pedido">Pedido especial</button>
+            <button type="button" class="chip" data-topic="prensa">Prensa</button>
+            <button type="button" class="chip" data-topic="proveedor">Soy proveedor</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="name">Nombre</label>
+          <input id="name" name="name" placeholder="Tu nombre">
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="tu@email.com">
+        </div>
+        <div class="form-row">
+          <label for="msg">Mensaje</label>
+          <textarea id="msg" name="msg" rows="4" placeholder="Contanos…"></textarea>
+        </div>
+        <button type="submit" class="btn btn--invert" style="margin-top:8px;">ENVIAR MENSAJE →</button>
+      </form>
+
+      <div class="reveal">
+        <div class="mono" style="color:rgba(255,255,255,.7); margin-bottom:20px;">↳ DIRECTO</div>
+        <dl class="contact-info">
+          <dt>Email</dt>
+          <dd><a href="mailto:hola@perdupanaderia.com.ar">hola@perdupanaderia.com.ar</a></dd>
+          <dt>WhatsApp</dt>
+          <dd><a href="https://wa.me/543515552018">+54 351 555-2018</a></dd>
+          <dt>Instagram</dt>
+          <dd><a href="#">@perdupanaderia</a></dd>
+          <dt>Sede central</dt>
+          <dd>Achával Rodríguez 240<br>Güemes · Córdoba</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════ 8 · FOOTER ══════════════════════════════════════════════ -->
+<!-- Future Next.js: <Footer /> componente compartido -->
+<footer>
+  <div class="wrap">
+    <div class="foot__title reveal">
+      PAN<br>HONESTO<br><span style="color:var(--primary);">DESDE 2018.</span>
+    </div>
+    <div class="foot__cols">
+      <div>
+        <h5>VISITAR</h5>
+        <a href="#locales">Locales</a>
+        <a href="#cafe">Café</a>
+        <a href="#masa-madre">Masa madre</a>
+      </div>
+      <div>
+        <h5>CONOCER</h5>
+        <a href="#historia">Historia</a>
+        <a href="#blog">Blog</a>
+        <a href="#trabaja">Trabajá con nosotros</a>
+      </div>
+      <div>
+        <h5>SEGUINOS</h5>
+        <div class="foot__social" style="margin-top:4px;">
+          <a href="#" aria-label="Instagram"><svg><use href="#ic-ig"></use></svg></a>
+          <a href="#" aria-label="TikTok"><svg><use href="#ic-tt"></use></svg></a>
+          <a href="#" aria-label="Spotify"><svg><use href="#ic-sp"></use></svg></a>
+          <a href="#" aria-label="YouTube"><svg><use href="#ic-yt"></use></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>CONTACTO</h5>
+        <a href="mailto:hola@perdupanaderia.com.ar">hola@perdupanaderia.com.ar</a>
+        <a href="https://wa.me/543515552018">+54 351 555-2018</a>
+        <a href="#contacto">Formulario</a>
+      </div>
+    </div>
+    <div class="foot__legal">
+      <span>© 2025 PERDÚ PANADERÍA SRL · CÓRDOBA, ARGENTINA</span>
+      <span>@PERDUPANADERIA · HORNEAMOS DESDE LAS 04:30 AM</span>
+    </div>
+  </div>
+</footer>
+
+
+</div>
+<div class="view" id="view-blog">
+<div class="doc-nav"><div class="doc-nav__inner"><a href="#!/" class="brand" aria-label="Perdú · inicio"><span class="brand__mark"><svg width="20" height="22" viewBox="0 0 100 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M28 40 C28 18, 46 12, 52 22 L52 50 M52 22 C56 14, 70 14, 70 28 L70 50 M70 32 C76 26, 86 30, 86 42 L86 60 C86 84, 70 100, 50 100 C30 100, 18 86, 18 66 L18 52 C18 42, 28 40, 28 50 L28 64"></path><circle cx="40" cy="58" r="11"></circle><path d="M37 58 L43 58" stroke-width="2.5"></path></svg></span>PERDÚ</a><a href="#!/" class="doc-back">← Volver al inicio</a></div></div>
+<section class="section" style="border-top:none;">
+  <div class="wrap">
+    <div class="mono section__label">BLOG · ARCHIVO</div>
+    <h1 class="display section__title">DESDE EL <span class="accent">HORNO</span>.</h1>
+    <p class="section__lede">Historias del oficio, recetas, ferias y la gente que hace la masa. Acá están todas las notas, de la más nueva a la más vieja.</p>
+    <div class="blog-index__bar"><span class="mono">Todas las notas — 3 publicadas</span><span class="mono is-mute">Actualizado · Jun 2026</span></div>
+    <div class="blog-list">
+      <article class="blog-card">
+        <div class="photo photo--warm blog-card__media"><div class="photo-id">Foto · Horno encendido al amanecer</div></div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta"><span class="blog-card__cat">OFICIO</span><span class="blog-card__date">12 · MAY · 2026</span></div>
+          <h3 class="blog-card__title">Por qué fermentamos 72 horas, no 24</h3>
+          <p class="blog-card__excerpt">La diferencia entre un pan que cae bien y uno que no está en el tiempo. Te contamos qué pasa en cada hora de cámara fría y por qué no hay manera de saltearse ese paso.</p>
+          <div class="blog-card__foot"><span class="blog-card__author">Lucía Bertotti · 4 min</span><a href="#!/articulo/fermentacion-72h" class="blog-card__read">LEER →</a></div>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <div class="photo photo--cool blog-card__media"><div class="photo-id">Foto · Cata de granos verdes</div></div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta"><span class="blog-card__cat">CAFÉ</span><span class="blog-card__date">28 · ABR · 2026</span></div>
+          <h3 class="blog-card__title">Cómo elegimos el grano de la temporada</h3>
+          <p class="blog-card__excerpt">Cinco viajes al año, dos catadores, un solo criterio: que se banque la leche del tambo de Calchín. Crónica de la última cosecha en Jujuy.</p>
+          <div class="blog-card__foot"><span class="blog-card__author">Mariano Roca · 6 min</span><a href="#!/articulo/grano-temporada" class="blog-card__read">LEER →</a></div>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <div class="photo  blog-card__media"><div class="photo-id">Foto · Vecinos haciendo la fila los sábados</div></div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta"><span class="blog-card__cat">BARRIO</span><span class="blog-card__date">03 · ABR · 2026</span></div>
+          <h3 class="blog-card__title">Lo que sobra, dónde va</h3>
+          <p class="blog-card__excerpt">Cada noche cerramos con cero pan en mostrador. Te contamos cómo coordinamos con tres comedores de Córdoba para que el excedente esté caliente al otro día.</p>
+          <div class="blog-card__foot"><span class="blog-card__author">Equipo Perdú · 3 min</span><a href="#!/articulo/lo-que-sobra" class="blog-card__read">LEER →</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+</div>
+<div class="view" id="view-articulo">
+<div class="doc-nav"><div class="doc-nav__inner"><a href="#!/" class="brand" aria-label="Perdú · inicio"><span class="brand__mark"><svg width="20" height="22" viewBox="0 0 100 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M28 40 C28 18, 46 12, 52 22 L52 50 M52 22 C56 14, 70 14, 70 28 L70 50 M70 32 C76 26, 86 30, 86 42 L86 60 C86 84, 70 100, 50 100 C30 100, 18 86, 18 66 L18 52 C18 42, 28 40, 28 50 L28 64"></path><circle cx="40" cy="58" r="11"></circle><path d="M37 58 L43 58" stroke-width="2.5"></path></svg></span>PERDÚ</a><a href="#!/blog" class="doc-back">← Volver al blog</a></div></div>
+<main class="wrap doc-main">
+  <header class="article__head">
+    <div class="article__meta"><span class="blog-card__cat" id="art-cat"></span><span class="blog-card__date" id="art-date"></span></div>
+    <h1 class="display article__title" id="art-title"></h1>
+    <p class="article__sub" id="art-sub"></p>
+    <div class="article__byline"><span class="is-lead" id="art-author"></span><span id="art-read"></span></div>
+  </header>
+  <div class="photo article__hero" id="art-hero"><div class="photo-id" id="art-photoId"></div></div>
+  <article class="prose" id="art-prose"></article>
+  <div class="article__foot"><a href="#!/blog" class="btn">← Volver a las notas</a></div>
+</main>
+</div>
+<div class="view" id="view-receta">
+<div class="doc-nav"><div class="doc-nav__inner"><a href="#!/" class="brand" aria-label="Perdú · inicio"><span class="brand__mark"><svg width="20" height="22" viewBox="0 0 100 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M28 40 C28 18, 46 12, 52 22 L52 50 M52 22 C56 14, 70 14, 70 28 L70 50 M70 32 C76 26, 86 30, 86 42 L86 60 C86 84, 70 100, 50 100 C30 100, 18 86, 18 66 L18 52 C18 42, 28 40, 28 50 L28 64"></path><circle cx="40" cy="58" r="11"></circle><path d="M37 58 L43 58" stroke-width="2.5"></path></svg></span>PERDÚ</a><a href="#!/comunidad" class="doc-back">← Volver al recetario</a></div></div>
+<main class="wrap doc-main">
+  <header class="article__head">
+    <div class="article__meta"><span class="blog-card__cat" id="rec-cat"></span><span class="blog-card__date" id="rec-date"></span></div>
+    <h1 class="display article__title" id="rec-title"></h1>
+    <p class="article__sub" id="rec-sub"></p>
+    <div class="article__byline"><span class="is-lead" id="rec-author"></span><span id="rec-note"></span></div>
+  </header>
+  <div class="photo article__hero" id="rec-hero"><div class="photo-id" id="rec-photoId"></div></div>
+  <div class="recipe-facts" id="rec-facts"></div>
+  <div class="recipe__layout">
+    <aside class="recipe__sticky"><div class="mono recipe__coltitle">Ingredientes</div><ul class="ing-list" id="rec-ingredients"></ul><div class="recipe__note"><div class="mono">Tip de Perdú</div><p>Pesá todo en gramos con balanza. En panadería, las tazas mienten.</p></div></aside>
+    <div><div class="mono recipe__coltitle">Preparación</div><ol class="steps" id="rec-steps"></ol></div>
+  </div>
+  <div class="article__foot"><a href="#!/comunidad" class="btn">Ver todas las recetas →</a></div>
+</main>
+</div>
+<div class="view" id="view-comunidad">
+<div class="doc-nav"><div class="doc-nav__inner"><a href="#!/" class="brand" aria-label="Perdú · inicio"><span class="brand__mark"><svg width="20" height="22" viewBox="0 0 100 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M28 40 C28 18, 46 12, 52 22 L52 50 M52 22 C56 14, 70 14, 70 28 L70 50 M70 32 C76 26, 86 30, 86 42 L86 60 C86 84, 70 100, 50 100 C30 100, 18 86, 18 66 L18 52 C18 42, 28 40, 28 50 L28 64"></path><circle cx="40" cy="58" r="11"></circle><path d="M37 58 L43 58" stroke-width="2.5"></path></svg></span>PERDÚ</a><a href="#!/" class="doc-back">← Volver al inicio</a></div></div>
+
+
+
+<section id="recetas" style="background:#F4EFE8; color:#181C22; padding:96px 0; border-top:1px solid rgba(24,28,34,.12); font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased; line-height:1.5;">
+  <div style="max-width:1320px; margin:0 auto; padding:0 clamp(20px,4vw,64px);">
+
+    <!-- ── Encabezado de sección ─────────────────────────────── -->
+    <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#1B5A75; margin-bottom:14px;">↳ Recetario colectivo</div>
+    <h2 style="font-family:'Anton','Impact',sans-serif; font-size:clamp(48px,7vw,96px); line-height:.88; letter-spacing:.005em; color:#181C22; margin:0 0 20px; max-width:16ch; text-wrap:balance;">RECETAS DE LA COMUNIDAD</h2>
+    <p style="font-size:clamp(14px,1.2vw,16px); color:#3A3F47; max-width:60ch; line-height:1.6; margin:0;">
+      El recetario lo escribimos entre todos. Vecinos, clientes de toda la vida y curiosos del horno comparten lo que hacen con nuestra masa madre, nuestra manteca y nuestros granos. Sumá la tuya y que circule.
+    </p>
+
+    <!-- ── Panel del formulario (teal, como contacto) ────────── -->
+    <div data-recipe-form="" style="background:#1B5A75; color:#fff; padding:clamp(32px,5vw,64px); margin-top:56px;">
+      <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.7); margin-bottom:14px;">Compartí tu receta</div>
+      <h3 style="font-family:'Anton','Impact',sans-serif; font-size:clamp(30px,3.6vw,46px); line-height:.94; letter-spacing:.005em; color:#fff; margin:0 0 12px;">SUMÁ LO QUE HORNEÁS EN CASA</h3>
+      <p style="font-size:15px; color:rgba(255,255,255,.85); max-width:54ch; line-height:1.6; margin:0 0 40px;">Contanos qué preparaste, con qué y cómo. Si tenés una foto, mejor — pero no es obligatoria.</p>
+
+      <form autocomplete="off" onsubmit="return false" style="display:flex; flex-direction:column; gap:28px; max-width:760px;">
+
+        <!-- Nombre + Título en fila (auto-fit, colapsa en móvil) -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:28px 32px;">
+          <div>
+            <label style="display:block; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:8px;">Tu nombre</label>
+            <input type="text" placeholder="Ej. Sofía Ledesma" style="width:100%; padding:12px 0; background:transparent; border:0; border-bottom:1px solid rgba(255,255,255,.4); font-family:'Inter',sans-serif; font-size:16px; color:#fff; outline:none;" style-focus="border-bottom-color:#fff;">
+          </div>
+          <div>
+            <label style="display:block; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:8px;">Título de la receta</label>
+            <input type="text" placeholder="Ej. Pan de campo de fin de semana" style="width:100%; padding:12px 0; background:transparent; border:0; border-bottom:1px solid rgba(255,255,255,.4); font-family:'Inter',sans-serif; font-size:16px; color:#fff; outline:none;" style-focus="border-bottom-color:#fff;">
+          </div>
+        </div>
+
+        <!-- Ingredientes -->
+        <div>
+          <label style="display:block; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:8px;">Ingredientes</label>
+          <textarea rows="4" placeholder="Un ingrediente por línea, con cantidades…" style="width:100%; padding:12px 0; background:transparent; border:0; border-bottom:1px solid rgba(255,255,255,.4); font-family:'Inter',sans-serif; font-size:16px; color:#fff; outline:none; resize:vertical; line-height:1.6;" style-focus="border-bottom-color:#fff;"></textarea>
+        </div>
+
+        <!-- Preparación -->
+        <div>
+          <label style="display:block; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:8px;">Preparación</label>
+          <textarea rows="6" placeholder="Paso a paso: tiempos, temperaturas, descansos…" style="width:100%; padding:12px 0; background:transparent; border:0; border-bottom:1px solid rgba(255,255,255,.4); font-family:'Inter',sans-serif; font-size:16px; color:#fff; outline:none; resize:vertical; line-height:1.6;" style-focus="border-bottom-color:#fff;"></textarea>
+        </div>
+
+        <!-- Foto opcional -->
+        <div>
+          <label style="display:block; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:10px;">Foto <span style="opacity:.55; text-transform:none; letter-spacing:.02em;">— opcional</span></label>
+          <label data-upload="" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; border:1px dashed rgba(255,255,255,.45); padding:30px 24px; text-align:center; cursor:pointer; transition:border-color .15s ease, background .15s ease;">
+            <span aria-hidden="true" style="display:inline-flex; width:34px; height:34px; border:1px solid rgba(255,255,255,.55); align-items:center; justify-content:center;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"></path><path d="M7 9l5-5 5 5"></path><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"></path></svg>
+            </span>
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#fff;">Arrastrá una imagen o hacé clic</span>
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; letter-spacing:.06em; color:rgba(255,255,255,.5);">JPG o PNG · hasta 5 MB</span>
+            <input type="file" accept="image/*" style="display:none;">
+          </label>
+        </div>
+
+        <!-- Pie del formulario -->
+        <div style="display:flex; flex-wrap:wrap; gap:18px 24px; align-items:center; justify-content:space-between; margin-top:4px;">
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.6); max-width:38ch; line-height:1.5;">La revisamos antes de publicarla. Te avisamos cuando esté en el recetario.</span>
+          <button type="submit" style="display:inline-flex; align-items:center; gap:10px; padding:16px 24px; font-family:'Anton','Impact',sans-serif; font-size:18px; letter-spacing:.04em; background:#fff; color:#1B5A75; border:none; cursor:pointer; transition:background .15s ease, color .15s ease;" style-hover="background:#181C22; color:#fff;">PUBLICAR RECETA →</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- ── Recetas ya publicadas ─────────────────────────────── -->
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; margin:72px 0 28px;">
+      <div style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#3A3F47;">Ya publicadas — 3 recetas</div>
+      <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:rgba(24,28,34,.55);">Actualizado · Jun 2026</span>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:24px;">
+
+      <!-- Receta 1 -->
+      <article style="display:flex; flex-direction:column; background:#fff; border:1px solid rgba(24,28,34,.12); transition:transform .25s ease, border-color .25s ease;" style-hover="transform:translateY(-4px); border-color:#181C22;">
+        <div style="position:relative; aspect-ratio:4/3; background:repeating-linear-gradient(135deg, rgba(184,107,63,.08) 0 1px, transparent 1px 16px), linear-gradient(135deg, rgba(184,107,63,.14), rgba(184,107,63,.04)); border-bottom:1px solid rgba(24,28,34,.12);">
+          <span style="position:absolute; top:14px; left:14px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#1B5A75; background:#fff; padding:5px 9px; border:1px solid rgba(24,28,34,.12);">Panes</span>
+          <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#3A3F47; opacity:.55; text-align:center; padding:24px;">Foto · Pan de campo cortado al medio</div>
+        </div>
+        <div style="padding:28px; display:flex; flex-direction:column; gap:14px; flex:1;">
+          <div style="display:flex; gap:14px; align-items:center; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:rgba(24,28,34,.55);">
+            <span>18 H · Fermentación</span><span>Intermedia</span>
+          </div>
+          <h3 style="font-family:'Anton','Impact',sans-serif; font-size:clamp(24px,2.3vw,30px); line-height:1; letter-spacing:.005em; color:#181C22; margin:0;">Pan de campo con masa madre</h3>
+          <p style="font-size:14px; color:#3A3F47; line-height:1.55; margin:0;">Corteza gruesa y miga abierta. La masa madre del local hace casi todo el trabajo; vos solo esperás.</p>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:10px;">
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.06em; color:rgba(24,28,34,.55);">Por Sofía Ledesma</span>
+            <a href="#!/receta/pan-de-campo" style="font-family:'Anton','Impact',sans-serif; font-size:14px; letter-spacing:.06em; display:inline-flex; align-items:center; gap:8px; padding:10px 16px; background:#181C22; color:#F4EFE8; transition:background .15s ease;" style-hover="background:#1B5A75;">VER RECETA →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Receta 2 -->
+      <article style="display:flex; flex-direction:column; background:#fff; border:1px solid rgba(24,28,34,.12); transition:transform .25s ease, border-color .25s ease;" style-hover="transform:translateY(-4px); border-color:#181C22;">
+        <div style="position:relative; aspect-ratio:4/3; background:repeating-linear-gradient(135deg, rgba(27,90,117,.08) 0 1px, transparent 1px 16px), linear-gradient(135deg, rgba(27,90,117,.14), rgba(27,90,117,.04)); border-bottom:1px solid rgba(24,28,34,.12);">
+          <span style="position:absolute; top:14px; left:14px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#1B5A75; background:#fff; padding:5px 9px; border:1px solid rgba(24,28,34,.12);">Dulces</span>
+          <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#3A3F47; opacity:.55; text-align:center; padding:24px;">Foto · Medialunas recién pinceladas</div>
+        </div>
+        <div style="padding:28px; display:flex; flex-direction:column; gap:14px; flex:1;">
+          <div style="display:flex; gap:14px; align-items:center; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:rgba(24,28,34,.55);">
+            <span>3 H · + descanso</span><span>Avanzada</span>
+          </div>
+          <h3 style="font-family:'Anton','Impact',sans-serif; font-size:clamp(24px,2.3vw,30px); line-height:1; letter-spacing:.005em; color:#181C22; margin:0;">Medialunas de manteca</h3>
+          <p style="font-size:14px; color:#3A3F47; line-height:1.55; margin:0;">El clásico de los domingos. Mucho laminado, manteca de verdad y paciencia con los pliegues.</p>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:10px;">
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.06em; color:rgba(24,28,34,.55);">Por Tomás Iriarte</span>
+            <a href="#!/receta/medialunas" style="font-family:'Anton','Impact',sans-serif; font-size:14px; letter-spacing:.06em; display:inline-flex; align-items:center; gap:8px; padding:10px 16px; background:#181C22; color:#F4EFE8; transition:background .15s ease;" style-hover="background:#1B5A75;">VER RECETA →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Receta 3 -->
+      <article style="display:flex; flex-direction:column; background:#fff; border:1px solid rgba(24,28,34,.12); transition:transform .25s ease, border-color .25s ease;" style-hover="transform:translateY(-4px); border-color:#181C22;">
+        <div style="position:relative; aspect-ratio:4/3; background:repeating-linear-gradient(135deg, rgba(24,28,34,.06) 0 1px, transparent 1px 16px), rgba(24,28,34,.04); border-bottom:1px solid rgba(24,28,34,.12);">
+          <span style="position:absolute; top:14px; left:14px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#1B5A75; background:#fff; padding:5px 9px; border:1px solid rgba(24,28,34,.12);">Horno</span>
+          <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#3A3F47; opacity:.55; text-align:center; padding:24px;">Foto · Focaccia con romero y sal gruesa</div>
+        </div>
+        <div style="padding:28px; display:flex; flex-direction:column; gap:14px; flex:1;">
+          <div style="display:flex; gap:14px; align-items:center; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:rgba(24,28,34,.55);">
+            <span>5 H · Fermentación</span><span>Fácil</span>
+          </div>
+          <h3 style="font-family:'Anton','Impact',sans-serif; font-size:clamp(24px,2.3vw,30px); line-height:1; letter-spacing:.005em; color:#181C22; margin:0;">Focaccia de romero y oliva</h3>
+          <p style="font-size:14px; color:#3A3F47; line-height:1.55; margin:0;">Hidratación alta, hoyitos con los dedos y buen aceite de oliva. La más fácil para empezar a fermentar.</p>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:10px;">
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.06em; color:rgba(24,28,34,.55);">Por Camila Ruiz</span>
+            <a href="#!/receta/focaccia" style="font-family:'Anton','Impact',sans-serif; font-size:14px; letter-spacing:.06em; display:inline-flex; align-items:center; gap:8px; padding:10px 16px; background:#181C22; color:#F4EFE8; transition:background .15s ease;" style-hover="background:#1B5A75;">VER RECETA →</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Pie de la grilla -->
+    <div style="margin-top:48px; display:flex; justify-content:center; padding-top:32px; border-top:1px solid rgba(24,28,34,.12);">
+      <a href="#!/" style="display:inline-flex; align-items:center; gap:10px; padding:16px 24px; font-family:'Anton','Impact',sans-serif; font-size:18px; letter-spacing:.04em; background:#181C22; color:#F4EFE8; transition:background .15s ease;" style-hover="background:#1B5A75;">VER TODO EL RECETARIO →</a>
+    </div>
+
+  </div>
+</section>
+
+</div>
+<script>
+  // ─── Sticky nav scroll state ─────────────────────────────────────
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // ─── Mobile drawer (mismo comportamiento que el archivo de ref) ──
+  const drawer = document.getElementById('drawer');
+  const burger = document.getElementById('burger');
+  const openDrawer  = () => { drawer.classList.add('is-open');  drawer.setAttribute('aria-hidden','false'); };
+  const closeDrawer = () => { drawer.classList.remove('is-open'); drawer.setAttribute('aria-hidden','true');  };
+  burger.addEventListener('click', openDrawer);
+  drawer.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeDrawer));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+  // ─── Smooth-scroll para anchors internos ─────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      closeDrawer();
+    });
+  });
+
+  // ─── Locales · mapa interactivo ──────────────────────────────────
+  // Future: estos datos vienen de Sanity (schema "Local")
+  const LOCS = [
+    { id:'guemes', name:'GÜEMES',             addr:'Achával Rodríguez 240',         hrs:'L–D · 5:30–21:00', phone:'351 555-2018', x:38, y:62, est:'2019', tag:'CASA MATRIZ',     note:'El primero. Donde todo empezó. Horno de piedra original.' },
+    { id:'ncba',   name:'NUEVA CÓRDOBA',      addr:'Buenos Aires 850',              hrs:'L–D · 6:00–22:00', phone:'351 555-2022', x:46, y:55, est:'2022', tag:'',                note:'Cerca de la UNC. Café de especialidad, mesa larga compartida.' },
+    { id:'cerro',  name:'CERRO DE LAS ROSAS', addr:'Rafael Núñez 4520',             hrs:'L–D · 6:00–21:00', phone:'351 555-2023', x:28, y:25, est:'2023', tag:'PATIO INTERNO',   note:'Patio interno con tilos. Tortas por encargo con 24 hs.' },
+    { id:'alta',   name:'ALTA CÓRDOBA',       addr:'Jerónimo Luis de Cabrera 970',  hrs:'L–D · 6:00–20:00', phone:'351 555-2024', x:58, y:38, est:'2024', tag:'',                note:'Esquina histórica reciclada. Bici-friendly, hay parking adentro.' },
+    { id:'centro', name:'CENTRO',             addr:'Belgrano 167',                  hrs:'L–V · 7:00–20:00', phone:'351 555-2025', x:50, y:50, est:'2025', tag:'SOLO TAKE-AWAY',  note:'Solo para llevar. Cierra los domingos. Ideal antes de oficina.' },
+  ];
+
+  let activeLoc = LOCS[0].id;
+  let openLoc   = null;  // accordion abierto en la lista "TODOS LOS LOCALES"
+  const mapEl    = document.getElementById('map');
+  const detailEl = document.getElementById('loc-detail');
+  const listEl   = document.getElementById('loc-list');
+
+  // Inyectar pins en el mapa
+  LOCS.forEach(l => {
+    const pin = document.createElement('button');
+    pin.type = 'button';
+    pin.className = 'map-pin';
+    pin.dataset.id = l.id;
+    pin.style.left = l.x + '%';
+    pin.style.top  = l.y + '%';
+    pin.setAttribute('aria-label', `Ver ${l.name}`);
+    pin.innerHTML = `
+      <span class="map-pin__label">${l.name}</span>
+      <span class="map-pin__dot"></span>
+    `;
+    pin.addEventListener('click', () => { activeLoc = l.id; renderLocs(); });
+    mapEl.appendChild(pin);
+  });
+
+  function renderLocs(){
+    // Pins
+    document.querySelectorAll('.map-pin').forEach(p => {
+      p.classList.toggle('is-active', p.dataset.id === activeLoc);
+    });
+    // Panel de detalle
+    const sel = LOCS.find(l => l.id === activeLoc);
+    detailEl.innerHTML = `
+      <div class="loc-detail__fade">
+        <div class="mono" style="margin-bottom:8px;">LOCAL · DESDE ${sel.est}${sel.tag ? ' · ' + sel.tag : ''}</div>
+        <div class="loc-detail__head">
+          <h3 class="loc-detail__name">${sel.name}</h3>
+          <span class="loc-detail__est">Fig. ${String(LOCS.indexOf(sel)+1).padStart(2,'0')}</span>
+        </div>
+        <div class="photo photo--warm loc-detail__photo">
+          <div class="photo-id">Foto · ${sel.name}</div>
+          <div class="photo-cap">
+            <span>${sel.addr.toUpperCase()}</span>
+            <span>${sel.hrs}</span>
+          </div>
+        </div>
+        <p class="loc-detail__quote">"${sel.note}"</p>
+        <dl class="loc-info">
+          <dt>Dirección</dt><dd>${sel.addr} · Córdoba</dd>
+          <dt>Horario</dt><dd>${sel.hrs}</dd>
+          <dt>Teléfono</dt><dd>${sel.phone}</dd>
+        </dl>
+        <a href="#contacto" class="btn">CÓMO LLEGAR →</a>
+      </div>
+    `;
+    // Lista debajo (accordion independiente del mapa)
+    listEl.innerHTML = LOCS.map(l => {
+      const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(l.addr + ', Córdoba, Argentina');
+      const isOpen = l.id === openLoc;
+      return `
+      <div class="loc-row ${isOpen ? 'is-open' : ''}" data-id="${l.id}">
+        <button type="button" class="loc-row__head" aria-expanded="${isOpen}" aria-controls="panel-${l.id}">
+          <div>
+            <div class="loc-row__name">${l.name}</div>
+            <div class="loc-row__addr">${l.addr} · Córdoba</div>
+          </div>
+          <div>
+            <div class="loc-row__hrs">${l.hrs}</div>
+            <div class="loc-row__city">DESDE ${l.est}${l.tag ? ' · ' + l.tag : ''}</div>
+          </div>
+          <span class="loc-row__caret" aria-hidden="true">↓</span>
+        </button>
+        <div class="loc-row__panel" id="panel-${l.id}">
+          <div>
+            <div class="loc-row__panel-inner">
+              <div class="photo photo--warm loc-row__photo">
+                <div class="photo-id">Foto · ${l.name}</div>
+                <div class="photo-cap">
+                  <span>${l.addr.toUpperCase()}</span>
+                  <span>${l.hrs}</span>
+                </div>
+              </div>
+              <div class="loc-row__content">
+                <p class="loc-row__note">"${l.note}"</p>
+                <dl class="loc-row__info">
+                  <dt>Dirección</dt><dd>${l.addr}</dd>
+                  <dt>Horario</dt><dd>${l.hrs}</dd>
+                  <dt>Teléfono</dt><dd>${l.phone}</dd>
+                  <dt>Abrió</dt><dd>${l.est}${l.tag ? ' · ' + l.tag : ''}</dd>
+                </dl>
+                <div class="loc-row__foot">
+                  <a href="${mapsUrl}" target="_blank" rel="noopener" class="loc-row__cta">
+                    CÓMO LLEGAR
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12 H19 M13 6 L19 12 L13 18"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;}).join('');
+    listEl.querySelectorAll('.loc-row__head').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.closest('.loc-row').dataset.id;
+        openLoc = (openLoc === id) ? null : id;
+        renderLocs();
+      });
+    });
+  }
+  renderLocs();
+
+  // ─── Contacto · chips activos ────────────────────────────────────
+  document.querySelectorAll('#topic-chips .chip').forEach(c => {
+    c.addEventListener('click', () => {
+      document.querySelectorAll('#topic-chips .chip').forEach(b => b.classList.remove('is-active'));
+      c.classList.add('is-active');
+    });
+  });
+  document.getElementById('contact-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type=submit]');
+    const original = btn.textContent;
+    btn.textContent = 'ENVIADO ✓';
+    btn.disabled = true;
+    setTimeout(() => { btn.textContent = original; btn.disabled = false; e.target.reset();
+      document.querySelectorAll('#topic-chips .chip').forEach((b,i) => b.classList.toggle('is-active', i===0));
+    }, 1800);
+  });
+
+  // ─── Reveal on scroll (mismo patrón que el archivo de ref) ───────
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+<script>
+(function(){
+  var POSTS = {
+    "fermentacion-72h": {
+      cat:"OFICIO", date:"12 · MAY · 2026", read:"4 min", author:"Lucía Bertotti", role:"Maestra panadera",
+      photo:"warm", photoId:"Foto · Horno encendido al amanecer",
+      title:"Por qué fermentamos 72 horas, no 24",
+      sub:"La diferencia entre un pan que cae bien y uno que no, está en el tiempo. Te contamos qué pasa en cada hora de cámara fría y por qué no hay manera de saltearse ese paso.",
+      body:"<p>En Perdú no apuramos nada. Cada pieza que sale del horno pasó antes por la cámara de frío durante tres días enteros, y esa decisión no es un capricho de panadero obsesivo: es la diferencia entre un pan que se disfruta y uno que pesa en el estómago toda la tarde.</p><h2>Qué pasa en cada hora</h2><p>La fermentación larga le da tiempo a las bacterias de la masa madre para hacer su trabajo tranquilas. Predigieren parte del gluten y de los azúcares, y en el camino aparecen los aromas: esa acidez suave, el dejo a nuez tostada, la corteza que cruje sin lastimar el paladar.</p><blockquote class='pullquote'>Un pan de 72 horas no se inventa el día que lo amasás. Se planifica tres días antes.</blockquote><p>A las 24 horas la masa todavía está cruda de sabor. Recién pasadas las 48 empieza a redondearse, y en la última jornada gana cuerpo y profundidad. Cortar ese proceso por la mitad es entregar un pan a medio terminar, aunque por fuera parezca igual.</p><h2>Por qué cae mejor</h2><p>Mucha gente nos dice que el pan de panadería le resulta pesado, prueba el nuestro y no le pasa. No es magia: buena parte de la digestión ya ocurrió dentro de la masa, mientras dormía en la heladera. <strong>Tiempo en lugar de aditivos.</strong> Esa es, al final, toda la receta.</p>"
+    },
+    "grano-temporada": {
+      cat:"CAFÉ", date:"28 · ABR · 2026", read:"6 min", author:"Mariano Roca", role:"Tostador",
+      photo:"cool", photoId:"Foto · Cata de granos verdes",
+      title:"Cómo elegimos el grano de la temporada",
+      sub:"Cinco viajes al año, dos catadores y un solo criterio: que se banque la leche del tambo de Calchín. Crónica de la última cosecha en Jujuy.",
+      body:"<p>Elegir el grano de la temporada no es leer una ficha y comprar el puntaje más alto. Es subir a la finca, probar el café tal como lo toma el productor y discutir, taza en mano, si ese perfil va a funcionar en el mostrador un martes a la mañana.</p><h2>El viaje</h2><p>Hacemos cinco salidas al año. La última fue a las alturas de Jujuy, donde el frío de la noche concentra los azúcares del fruto. Cateamos lotes verdes durante dos días: buscamos cuerpo, no fuegos artificiales.</p><blockquote class='pullquote'>No queremos el café más raro. Queremos el que todavía está rico cuando se enfría.</blockquote><p>El criterio que mandó esta vez fue simple: <strong>que se banque la leche.</strong> Más de la mitad de lo que servimos lleva leche del tambo de Calchín, y un grano demasiado delicado se pierde apenas la toca.</p><h2>De la finca a tu taza</h2><p>Lo que entra ahora es un lote de altura, lavado, con notas a caramelo y una acidez redonda. Lo vas a encontrar en la barra hasta que se termine. Cuando se termine, será porque ya estamos arriba de otra montaña.</p>"
+    },
+    "lo-que-sobra": {
+      cat:"BARRIO", date:"03 · ABR · 2026", read:"3 min", author:"Equipo Perdú", role:"Córdoba",
+      photo:"", photoId:"Foto · Vecinos haciendo la fila los sábados",
+      title:"Lo que sobra, dónde va",
+      sub:"Cada noche cerramos con cero pan en mostrador. Te contamos cómo coordinamos con tres comedores de Córdoba para que el excedente esté caliente al otro día.",
+      body:"<p>Tirar pan nos parece una falta de respeto al oficio y a la gente. Por eso, hace tres años, dejamos de pensar el excedente como un problema de logística y empezamos a tratarlo como parte de la receta.</p><h2>El circuito</h2><p>A las nueve de la noche, lo que no se vendió se separa, se etiqueta con la fecha y se acomoda en cajas. A primera hora, tres comedores del sur de Córdoba pasan a buscarlo. El pan llega tibio, no de descarte.</p><blockquote class='pullquote'>Cerramos con el mostrador vacío. No porque vendimos todo, sino porque nada se pierde.</blockquote><p>No es caridad ni marketing: es sentido común. <strong>Producimos para el día</strong>, ajustamos las hornadas según lo que vemos y, lo que aún así queda, encuentra una mesa antes del desayuno.</p><p>Si tenés un comedor de barrio y querés sumarte al circuito, pasá por cualquiera de nuestros locales y preguntá por Mara.</p>"
+    }
+  };
+  var RECIPES = {
+    "pan-de-campo": {
+      cat:"PANES", date:"11 · JUN · 2026", author:"Sofía Ledesma", note:"Vecina de Güemes",
+      photo:"warm", photoId:"Foto · Pan de campo cortado al medio",
+      title:"Pan de campo con masa madre",
+      sub:"Corteza gruesa y miga abierta. La masa madre hace casi todo el trabajo; vos solo tenés que esperar las horas de fermentación.",
+      facts:[["Rinde","1 pan"],["Fermentación","18 h"],["Horno","45 min"],["Dificultad","Media"]],
+      ingredients:[["Harina 000","500 g"],["Agua","350 g"],["Masa madre activa","100 g"],["Sal fina","10 g"],["Harina de arroz (banneton)","c/n"]],
+      steps:["Mezclá la harina con el agua y dejá reposar tapado 40 minutos (autólisis).","Sumá la masa madre y la sal. Integrá amasando suave hasta que la masa se despegue del bol.","Hacé tres tandas de pliegues cada 30 minutos durante las primeras dos horas.","Dejá fermentar a temperatura ambiente hasta que crezca un 50%, y luego pasá a la heladera toda la noche.","A la mañana, formá el bollo con tensión y acomodalo en el banneton enharinado.","Precalentá el horno con olla de hierro a 250°C. Volcá el pan, hacé un corte y tapá.","Horneá 20 minutos tapado y 25 destapado, hasta que la corteza esté bien dorada.","Enfriá sobre rejilla al menos una hora antes de cortar. La miga se termina de asentar fuera del horno."]
+    },
+    "medialunas": {
+      cat:"DULCES", date:"06 · JUN · 2026", author:"Tomás Iriarte", note:"Cliente de los sábados",
+      photo:"cool", photoId:"Foto · Medialunas recién pinceladas",
+      title:"Medialunas de manteca",
+      sub:"El clásico de los domingos. Mucho laminado, manteca de verdad y paciencia con los pliegues entre frío y frío.",
+      facts:[["Rinde","12 u"],["Reposo","12 h"],["Horno","16 min"],["Dificultad","Alta"]],
+      ingredients:[["Harina 000","500 g"],["Leche tibia","250 g"],["Levadura fresca","20 g"],["Azúcar","60 g"],["Manteca (empaste)","250 g"],["Huevo (para pintar)","1 u"],["Sal","8 g"]],
+      steps:["Armá un bollo con la harina, la leche, la levadura, el azúcar y la sal. Amasá hasta que esté liso y dejá descansar en frío una hora.","Estirá la masa en un rectángulo y colocá la manteca fría en el centro. Cerrá como un sobre.","Hacé el primer pliegue simple, envolvé y descansá 30 minutos en heladera.","Repetí el estirado y el pliegue dos veces más, siempre con descanso en frío entremedio.","Estirá la masa final a 4 mm, cortá triángulos y enrollá desde la base hacia la punta.","Dejá levar las piezas a temperatura ambiente hasta que dupliquen, unas dos horas.","Pintá con huevo batido y horneá a 200°C por 16 minutos hasta que estén bien doradas.","Pincelá con almíbar caliente apenas salgan para ese brillo de vidriera."]
+    },
+    "focaccia": {
+      cat:"HORNO", date:"31 · MAY · 2026", author:"Camila Ruiz", note:"Vecina de Nueva Córdoba",
+      photo:"", photoId:"Foto · Focaccia con romero y sal gruesa",
+      title:"Focaccia de romero y oliva",
+      sub:"Hidratación alta, hoyitos con los dedos y buen aceite de oliva. La más fácil para empezar a fermentar en casa.",
+      facts:[["Rinde","1 placa"],["Fermentación","5 h"],["Horno","22 min"],["Dificultad","Fácil"]],
+      ingredients:[["Harina 000","500 g"],["Agua","400 g"],["Levadura seca","5 g"],["Aceite de oliva","60 g"],["Sal","10 g"],["Romero fresco","2 ramas"],["Sal gruesa","c/n"]],
+      steps:["Mezclá la harina, el agua, la levadura y la sal hasta tener una masa pegajosa. No hace falta amasar.","Hacé dos tandas de pliegues dentro del bol con la mano mojada, cada 30 minutos.","Dejá fermentar tapado hasta que duplique, unas tres horas a temperatura ambiente.","Aceitá bien una placa y volcá la masa. Estirala con cuidado hasta los bordes.","Dejá reposar 45 minutos más, hasta que se vea esponjosa.","Hundí los dedos por toda la superficie para hacer los hoyitos característicos.","Rociá con aceite de oliva, repartí el romero y la sal gruesa.","Horneá a 230°C por 22 minutos hasta que esté dorada. Comela tibia, sin culpa."]
+    }
+  };
+  function setT(id,t){ var e=document.getElementById(id); if(e) e.textContent=t; }
+  function setHero(id,photo){ var e=document.getElementById(id); if(!e) return; e.className="photo article__hero"; if(photo==="warm") e.classList.add("photo--warm"); else if(photo==="cool") e.classList.add("photo--cool"); }
+  function renderArticle(key){ var d = POSTS[key] || POSTS[Object.keys(POSTS)[0]]; setT("art-cat",d.cat); setT("art-date",d.date); setT("art-title",d.title); setT("art-sub",d.sub); setT("art-author","Por "+d.author+" · "+d.role); setT("art-read",d.read+" de lectura"); setHero("art-hero",d.photo); setT("art-photoId",d.photoId); document.getElementById("art-prose").innerHTML=d.body; document.title=d.title+" · Perdú"; }
+  function renderRecipe(key){ var d = RECIPES[key] || RECIPES[Object.keys(RECIPES)[0]]; setT("rec-cat",d.cat); setT("rec-date",d.date); setT("rec-title",d.title); setT("rec-sub",d.sub); setT("rec-author","Por "+d.author); setT("rec-note",d.note); setHero("rec-hero",d.photo); setT("rec-photoId",d.photoId); document.getElementById("rec-facts").innerHTML=d.facts.map(function(f){return "<div class='recipe-fact'><div class='recipe-fact__label'>"+f[0]+"</div><div class='recipe-fact__val'>"+f[1]+"</div></div>";}).join(""); document.getElementById("rec-ingredients").innerHTML=d.ingredients.map(function(x){return "<li><span>"+x[0]+"</span><span>"+x[1]+"</span></li>";}).join(""); document.getElementById("rec-steps").innerHTML=d.steps.map(function(s){return "<li>"+s+"</li>";}).join(""); document.title=d.title+" · Recetario Perdú"; }
+  function show(id){ var vs=document.querySelectorAll(".view"); for(var i=0;i<vs.length;i++){ vs[i].classList.toggle("is-active", vs[i].id===id); } }
+  function route(){ var h = location.hash || ""; if(h.indexOf("#!/")!==0){ if(h===""||h==="#"){ show("view-home"); } return; } var path=h.slice(3); if(path===""){ show("view-home"); document.title="Perdú Panadería"; } else if(path==="blog"){ show("view-blog"); document.title="Blog · Perdú"; } else if(path==="comunidad"){ show("view-comunidad"); document.title="Recetas de la comunidad · Perdú"; } else if(path.indexOf("articulo/")===0){ renderArticle(decodeURIComponent(path.slice(9))); show("view-articulo"); } else if(path.indexOf("receta/")===0){ renderRecipe(decodeURIComponent(path.slice(7))); show("view-receta"); } else { show("view-home"); } window.scrollTo(0,0); }
+  window.addEventListener("hashchange", route);
+  route();
+})();
+</script>
+<style id="__om-edit-overrides">
+#cafe :is(h1,h2,h3,h4,h5,h6) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { margin: 0px 0px 10px !important }
+#cafe :is(h1,h2,h3,h4,h5,h6) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { margin: 0px 0px 50px !important }
+#cafe :is(h1,h2,h3,h4,h5,h6) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { padding: 0px !important }
+#cafe :is(h1,h2,h3,h4,h5,h6) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { padding: 0px 0px 20px !important }
+</style>
+</body></html>
