@@ -1,5 +1,5 @@
 /* ============================================================
-   DECAMPO TALABARTERÍA
+   LAPACHO TALABARTERÍA
    Datos + tienda + capa de movimiento.
    ============================================================ */
 
@@ -77,7 +77,7 @@
     { id: 'boina', cat: 'ropa', name: 'Boina de Paño de Lana', price: 32000, stock: 26, short: 'Paño pesado, la de siempre.',
       desc: 'Boina clásica de paño de lana con badana de cuero. Talles 55 al 62, en negro, gris y azul.', tags: ['Lana', 'Talles 55–62'] },
     { id: 'chaleco-acolchado', cat: 'ropa', name: 'Chaleco Acolchado con Escudo', price: 128000, stock: 14, short: 'Liviano, corta el viento y no molesta a caballo.', badge: 'Nuevo',
-      desc: 'Chaleco acolchado en microfibra con cuello alto, vivos de corderoy y escudo Decampo en cuero. Abriga sin abultar: se usa arriba de la camisa y deja el brazo libre. Talles S al XXL.', tags: ['Microfibra', 'Escudo de cuero', 'S–XXL'] },
+      desc: 'Chaleco acolchado en microfibra con cuello alto, vivos de corderoy y escudo Lapacho en cuero. Abriga sin abultar: se usa arriba de la camisa y deja el brazo libre. Talles S al XXL.', tags: ['Microfibra', 'Escudo de cuero', 'S–XXL'] },
     { id: 'chaleco-gamuza', cat: 'ropa', name: 'Chaleco de Gamuza', price: 185000, stock: 6, short: 'Gamuza natural, entallado, para montar y para salir.',
       desc: 'Chaleco de gamuza natural con hebilla de ajuste en la espalda y costura reforzada en las sisas. El cuero se ablanda con el uso y toma la forma del cuerpo. Talles XS al XL.', tags: ['Gamuza', 'Ajuste en espalda', 'XS–XL'] },
     { id: 'poncho-rojo', cat: 'ropa', name: 'Poncho Criollo Rojo', price: 210000, stock: 4, short: 'El rojo de siempre, con guarda negra.', badge: 'Clásico',
@@ -445,7 +445,7 @@
     mDesc.textContent = p.desc;
     mTags.innerHTML = '';
     p.tags.forEach(t => mTags.appendChild(el('span', { class: 'tag', text: t })));
-    mSku.textContent = 'Código DC-' + p.id.toUpperCase() + ' · Envío en 48–72 h a todo el país · Retiro sin cargo en el local.';
+    mSku.textContent = 'Código LP-' + p.id.toUpperCase() + ' · Envío en 48–72 h a todo el país · Retiro sin cargo en el local.';
 
     modal.classList.add('is-open');
     lockScroll(true);
