@@ -1,22 +1,22 @@
+/* ============================================================
+   LAPACHO TALABARTERÍA
+   Datos + tienda + capa de movimiento.
+   ============================================================ */
+
 (() => {
   'use strict';
 
   const WHATSAPP = '5493516108414';
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const CAT_ICONS = {
-    equino: ['M3 3h.01', 'M7 5h.01', 'M11 7h.01', 'M3 7h.01', 'M7 9h.01', 'M3 11h.01', 'M17 21a5 5 0 0 0 5-5c0-2.76-2.5-5-5-3-2.5-2-5 .24-5 3a5 5 0 0 0 5 5Z', 'M15 3h.01', 'M15 6.5V7'],
-    cuero: ['M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z', 'M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12', 'M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17'],
-    aperos: ['M7 22a5 5 0 0 1-2-4', 'M7 16.93c.96.43 1.96.74 2.99.91', 'M3.34 14A6.8 6.8 0 0 1 2 10c0-4.42 4.48-8 10-8s10 3.58 10 8-4.48 8-10 8a12 12 0 0 1-1.5-.09', 'M5 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'],
-    mates: ['m6 8 1.75 12.28a2 2 0 0 0 2 1.72h4.54a2 2 0 0 0 2-1.72L18 8', 'M5 8h14', 'M7 15a6.47 6.47 0 0 1 5 0 6.47 6.47 0 0 0 5 0', 'm12 8 1-6h2'],
-    ropa: ['M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z']
-  };
+  /* ── Datos ────────────────────────────────────────────── */
 
   const CATS = [
     { id: 'equino', label: 'Cuidado equino' },
-    { id: 'cuero', label: 'Cuero' },
+    { id: 'cuero',  label: 'Cuero' },
     { id: 'aperos', label: 'Aperos' },
-    { id: 'mates', label: 'Mates' },
-    { id: 'ropa', label: 'Indumentaria' }
+    { id: 'mates',  label: 'Mates' },
+    { id: 'ropa',   label: 'Indumentaria' }
   ];
 
   const PRODUCT_IMAGES = {
@@ -56,7 +56,7 @@
       desc: 'Ungüento para raspones, matatura y rozaduras de apero. Forma una capa protectora que aísla la herida del barro y las moscas.', tags: ['250 g', 'Botiquín'] },
     { id: 'sulfato', cat: 'equino', name: 'Sulfato de Cobre en Gel', price: 8400, stock: 48, short: 'Para el casco y la ranilla, sin desperdicio.',
       desc: 'Sulfato de cobre en base gel para tratamiento de ranilla y afecciones del casco. Se adhiere y no se cae al primer paso.', tags: ['300 g', 'Casco y ranilla'] },
-    { id: 'montura', cat: 'aperos', name: 'Montura Criolla de Cuero', price: 890000, stock: 3, short: 'Basto de algarrobo, cosida a mano, hecha para durar.', badge: 'Hecho a mano',
+    { id: 'montura', cat: 'aperos', name: 'Montura Criolla de Cuero', price: 890000, stock: 3, short: 'Basto de algarrobo, cosida a mano, hecha para durar.', badge: 'Hecho a mano', feature: true,
       desc: 'Montura criolla completa con basto de algarrobo, cuero vacuno curtido al vegetal y costura a mano en hilo encerado. Se entrega en 20 a 30 días si es por encargo.', tags: ['Cuero vacuno', 'Hecha a mano', 'Por encargo'] },
     { id: 'riendas', cat: 'aperos', name: 'Riendas Trenzadas de Tiento', price: 62000, stock: 9, short: 'Ocho tientos, trenzado parejo, largo a medida.',
       desc: 'Riendas trenzadas en ocho tientos de cuero crudo. Se pueden pedir en el largo que uses.', tags: ['Cuero crudo', 'Largo a medida'] },
@@ -77,7 +77,7 @@
     { id: 'boina', cat: 'ropa', name: 'Boina de Paño de Lana', price: 32000, stock: 26, short: 'Paño pesado, la de siempre.',
       desc: 'Boina clásica de paño de lana con badana de cuero. Talles 55 al 62, en negro, gris y azul.', tags: ['Lana', 'Talles 55–62'] },
     { id: 'chaleco-acolchado', cat: 'ropa', name: 'Chaleco Acolchado con Escudo', price: 128000, stock: 14, short: 'Liviano, corta el viento y no molesta a caballo.', badge: 'Nuevo',
-      desc: 'Chaleco acolchado en microfibra con cuello alto, vivos de corderoy y escudo Decampo en cuero. Abriga sin abultar: se usa arriba de la camisa y deja el brazo libre. Talles S al XXL.', tags: ['Microfibra', 'Escudo de cuero', 'S–XXL'] },
+      desc: 'Chaleco acolchado en microfibra con cuello alto, vivos de corderoy y escudo Lapacho en cuero. Abriga sin abultar: se usa arriba de la camisa y deja el brazo libre. Talles S al XXL.', tags: ['Microfibra', 'Escudo de cuero', 'S–XXL'] },
     { id: 'chaleco-gamuza', cat: 'ropa', name: 'Chaleco de Gamuza', price: 185000, stock: 6, short: 'Gamuza natural, entallado, para montar y para salir.',
       desc: 'Chaleco de gamuza natural con hebilla de ajuste en la espalda y costura reforzada en las sisas. El cuero se ablanda con el uso y toma la forma del cuerpo. Talles XS al XL.', tags: ['Gamuza', 'Ajuste en espalda', 'XS–XL'] },
     { id: 'poncho-rojo', cat: 'ropa', name: 'Poncho Criollo Rojo', price: 210000, stock: 4, short: 'El rojo de siempre, con guarda negra.', badge: 'Clásico',
@@ -88,88 +88,139 @@
       desc: 'Poncho de lana merino tejido en telar por artesanas de Malargüe. Tamaño único, con fleco tejido a mano.', tags: ['Lana merino', 'Telar', 'Tamaño único'] }
   ];
 
-  const AUCTION_END = new Date('2026-08-04T21:00:00-03:00').getTime();
+  const state = { filter: 'todos', cart: {}, subscribed: false, checkedOut: false, openId: null };
 
-  const state = {
-    filter: 'todos',
-    cart: {}, // id -> qty
-    subscribed: false,
-    checkedOut: false,
-    openId: null
-  };
+  /* ── Utilidades ───────────────────────────────────────── */
 
+  const $  = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.prototype.slice.call((r || document).querySelectorAll(s));
   const money = n => '$ ' + n.toLocaleString('es-AR');
+  const pad = n => String(n).padStart(2, '0');
   const catLabel = id => (CATS.find(c => c.id === id) || {}).label || '';
   const productById = id => PRODUCTS.find(p => p.id === id);
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 
-  function svgIcon(paths, size) {
-    const s = size || 34;
+  function el(tag, attrs, kids) {
+    const n = document.createElement(tag);
+    for (const k in attrs || {}) {
+      if (k === 'text') n.textContent = attrs[k];
+      else if (k === 'html') n.innerHTML = attrs[k];
+      else if (attrs[k] != null) n.setAttribute(k, attrs[k]);
+    }
+    (kids || []).forEach(c => c && n.appendChild(c));
+    return n;
+  }
+
+  const ICON = {
+    arrow: 'M7 17 17 7M9 7h8v8',
+    cart:  'M6 6h15l-1.5 9h-12zM6 6 5 2H2M8 21h.01M18 21h.01',
+    close: 'M18 6 6 18M6 6l12 12'
+  };
+
+  function icon(d, size) {
     const ns = 'http://www.w3.org/2000/svg';
     const svg = document.createElementNS(ns, 'svg');
-    svg.setAttribute('width', s);
-    svg.setAttribute('height', s);
+    svg.setAttribute('width', size || 15);
+    svg.setAttribute('height', size || 15);
     svg.setAttribute('viewBox', '0 0 24 24');
     svg.setAttribute('fill', 'none');
     svg.setAttribute('stroke', 'currentColor');
-    svg.setAttribute('stroke-width', '2.75');
+    svg.setAttribute('stroke-width', '1.6');
     svg.setAttribute('stroke-linecap', 'round');
     svg.setAttribute('stroke-linejoin', 'round');
-    paths.forEach(d => {
+    svg.setAttribute('aria-hidden', 'true');
+    d.split('M').filter(Boolean).forEach(seg => {
       const p = document.createElementNS(ns, 'path');
-      p.setAttribute('d', d);
+      p.setAttribute('d', 'M' + seg);
       svg.appendChild(p);
     });
     return svg;
   }
 
-  function el(tag, attrs, children) {
-    const node = document.createElement(tag);
-    for (const k in attrs || {}) {
-      if (k === 'text') node.textContent = attrs[k];
-      else if (k === 'html') node.innerHTML = attrs[k];
-      else node.setAttribute(k, attrs[k]);
-    }
-    (children || []).forEach(c => c && node.appendChild(c));
-    return node;
+  /* ── Bloqueo de scroll (menú, carrito, modal) ─────────── */
+
+  let locks = 0;
+  function lockScroll(on) {
+    locks = Math.max(0, locks + (on ? 1 : -1));
+    document.documentElement.classList.toggle('is-locked', locks > 0);
+    document.body.classList.toggle('is-locked', locks > 0);
   }
 
-  // ── Toast ──────────────────────────────────────────────────────────────
-  const toastEl = document.querySelector('[data-toast]');
+  /* ── Aviso flotante ───────────────────────────────────── */
+
+  const toastEl = $('[data-toast]');
+  const toastText = $('[data-toast-text]');
   let toastTimer = null;
   function flash(msg) {
     clearTimeout(toastTimer);
-    toastEl.textContent = msg;
-    toastEl.hidden = false;
-    toastTimer = setTimeout(() => { toastEl.hidden = true; }, 2600);
+    toastText.textContent = msg;
+    toastEl.classList.add('is-on');
+    toastTimer = setTimeout(() => toastEl.classList.remove('is-on'), 2800);
   }
 
-  // ── Mobile nav ────────────────────────────────────────────────────────
-  const navToggle = document.querySelector('[data-nav-toggle]');
-  const navPanel = document.querySelector('[data-nav-panel]');
-  function setMenuOpen(open) {
-    navPanel.setAttribute('data-open', open ? '1' : '0');
-    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  /* ── Navegación ───────────────────────────────────────── */
+
+  const nav = $('[data-nav]');
+  let lastY = window.scrollY;
+
+  function onNavScroll() {
+    const y = window.scrollY;
+    nav.classList.toggle('is-stuck', y > 40);
+    const goingDown = y > lastY && y > 520;
+    nav.classList.toggle('is-hidden', goingDown && !document.body.classList.contains('is-menu-open'));
+    lastY = y;
   }
-  navToggle.addEventListener('click', () => {
-    setMenuOpen(navPanel.getAttribute('data-open') !== '1');
-  });
-  document.querySelectorAll('[data-close-menu]').forEach(a => {
-    a.addEventListener('click', () => setMenuOpen(false));
-  });
 
-  // ── Cart ──────────────────────────────────────────────────────────────
-  const cartWrap = document.querySelector('[data-cart-wrap]');
-  const cartItemsEl = document.querySelector('[data-cart-items]');
-  const cartCountEl = document.querySelector('[data-cart-count]');
-  const cartSubtotalEl = document.querySelector('[data-cart-subtotal]');
-  const cartShippingEl = document.querySelector('[data-cart-shipping]');
-  const cartTotalEl = document.querySelector('[data-cart-total]');
-  const checkoutBtn = document.querySelector('[data-checkout]');
+  /* ── Menú a pantalla completa ─────────────────────────── */
 
-  function openCart() { cartWrap.style.display = 'flex'; setMenuOpen(false); }
-  function closeCart() { cartWrap.style.display = 'none'; }
-  document.querySelector('[data-open-cart]').addEventListener('click', openCart);
-  document.querySelectorAll('[data-close-cart]').forEach(b => b.addEventListener('click', closeCart));
+  const menu = $('[data-menu]');
+  const menuToggle = $('[data-menu-toggle]');
+
+  function setMenu(open) {
+    const already = document.body.classList.contains('is-menu-open');
+    if (open === already) return;
+    document.body.classList.toggle('is-menu-open', open);
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    lockScroll(open);
+    // Cascada de los ítems
+    $$('.menu__list a', menu).forEach((a, i) => {
+      a.style.transitionDelay = open ? (140 + i * 70) + 'ms' : '0ms';
+    });
+  }
+
+  menuToggle.addEventListener('click', () => setMenu(!document.body.classList.contains('is-menu-open')));
+  $$('[data-close-menu]').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  /* ── Carrito ──────────────────────────────────────────── */
+
+  const cartWrap    = $('[data-cart]');
+  const cartItemsEl = $('[data-cart-items]');
+  const cartCountEl = $('[data-cart-count]');
+  const cartBtn     = $('[data-open-cart]');
+  const subtotalEl  = $('[data-cart-subtotal]');
+  const shippingEl  = $('[data-cart-shipping]');
+  const totalEl     = $('[data-cart-total]');
+  const checkoutBtn = $('[data-checkout]');
+
+  let cartReturnFocus = null;
+
+  function openCart() {
+    cartReturnFocus = document.activeElement;
+    setMenu(false);
+    cartWrap.classList.add('is-open');
+    lockScroll(true);
+    const close = $('.btn-icon[data-close-cart]', cartWrap);
+    if (close) close.focus({ preventScroll: true });
+  }
+  function closeCart() {
+    if (!cartWrap.classList.contains('is-open')) return;
+    cartWrap.classList.remove('is-open');
+    lockScroll(false);
+    if (cartReturnFocus) cartReturnFocus.focus({ preventScroll: true });
+  }
+  cartBtn.addEventListener('click', openCart);
+  $$('[data-close-cart]').forEach(b => b.addEventListener('click', closeCart));
 
   function addToCart(id) {
     const p = productById(id);
@@ -194,243 +245,393 @@
   function renderCart() {
     const { ids, subtotal, shipping } = cartTotals();
     const count = ids.reduce((t, id) => t + state.cart[id], 0);
+
     cartCountEl.textContent = String(count);
+    cartBtn.setAttribute('data-filled', count > 0 ? '1' : '0');
+    cartBtn.setAttribute('aria-label', count === 0 ? 'Abrir carrito, vacío' : 'Abrir carrito, ' + count + ' artículos');
 
     cartItemsEl.innerHTML = '';
+
     if (ids.length === 0) {
-      cartItemsEl.appendChild(el('div', { style: 'text-align:center; padding:56px 12px; color:#82796a' }, [
-        el('div', { style: 'width:72px; height:72px; border-radius:999px; background:#ebddc5; margin:0 auto 20px' }),
-        el('p', { style: 'font-size:15px; line-height:1.55; margin:0', html: 'Todavía no agregaste nada.<br>Volvé a la tienda y elegí algo lindo.' })
+      const ring = el('div', { class: 'empty__ring' }, [icon(ICON.cart, 26)]);
+      cartItemsEl.appendChild(el('div', { class: 'empty' }, [
+        ring,
+        el('p', { html: 'Todavía no agregaste nada.<br>Volvé a la tienda y elegí algo lindo.' })
       ]));
     } else {
       ids.forEach(id => {
         const p = productById(id);
         const qty = state.cart[id];
-        const row = el('div', { style: 'display:flex; gap:14px; align-items:flex-start' }, [
-          el('span', { style: "width:64px; height:64px; border-radius:16px; background:#0b3325; color:#f7c9df; display:flex; align-items:center; justify-content:center; font-family:'Cinzel',serif; font-size:22px; flex-shrink:0", text: p.name.charAt(0) }),
-          el('div', { style: 'flex:1; min-width:0' }, [
-            el('div', { style: "font-family:'Cinzel',serif; font-size:15px; font-weight:600; color:#0b3325; line-height:1.3", text: p.name }),
-            el('div', { style: 'font-size:12.5px; color:#82796a; margin-top:3px', text: money(p.price) + ' c/u' }),
-            el('div', { style: 'display:flex; align-items:center; gap:10px; margin-top:10px' }, [
-              el('button', { type: 'button', class: 'btn btn-secondary btn-icon cart-qty-btn', 'aria-label': 'Quitar uno', text: '−' }),
-              el('span', { style: 'font-size:14px; font-weight:700; color:#0b3325; min-width:18px; text-align:center', text: String(qty) }),
-              el('button', { type: 'button', class: 'btn btn-secondary btn-icon cart-qty-btn', 'aria-label': 'Sumar uno', text: '+' }),
-              el('button', { type: 'button', style: 'margin-left:auto; background:none; border:0; cursor:pointer; font-family:inherit; font-size:12.5px; color:#8c491a; text-decoration:underline', text: 'Quitar' })
-            ])
+
+        const dec = el('button', { type: 'button', 'aria-label': 'Quitar uno de ' + p.name, text: '–' });
+        const inc = el('button', { type: 'button', 'aria-label': 'Sumar uno de ' + p.name, text: '+' });
+        const rm  = el('button', { type: 'button', class: 'qty__rm', text: 'Quitar' });
+
+        dec.addEventListener('click', () => setQty(id, qty - 1));
+        inc.addEventListener('click', () => setQty(id, qty + 1));
+        rm.addEventListener('click', () => setQty(id, 0));
+
+        cartItemsEl.appendChild(el('div', { class: 'crow' }, [
+          el('img', { class: 'crow__img', src: PRODUCT_IMAGES[p.id], alt: '', loading: 'lazy' }),
+          el('div', {}, [
+            el('p', { class: 'crow__name', text: p.name }),
+            el('p', { class: 'crow__unit', text: money(p.price) + ' c/u' }),
+            el('div', { class: 'qty' }, [dec, el('span', { text: String(qty) }), inc, rm])
           ]),
-          el('div', { style: "font-family:'Cinzel',serif; font-size:15px; font-weight:600; color:#0b3325; white-space:nowrap", text: money(p.price * qty) })
-        ]);
-        const [decBtn, incBtn, removeBtn] = row.querySelectorAll('button');
-        decBtn.addEventListener('click', () => setQty(id, qty - 1));
-        incBtn.addEventListener('click', () => setQty(id, qty + 1));
-        removeBtn.addEventListener('click', () => setQty(id, 0));
-        cartItemsEl.appendChild(row);
+          el('p', { class: 'crow__line', text: money(p.price * qty) })
+        ]));
       });
     }
 
-    cartSubtotalEl.textContent = money(subtotal);
-    cartShippingEl.textContent = subtotal === 0 ? '—' : (shipping === 0 ? 'Gratis' : money(shipping));
-    cartTotalEl.textContent = money(subtotal + shipping);
+    subtotalEl.textContent = money(subtotal);
+    shippingEl.textContent = subtotal === 0 ? '—' : (shipping === 0 ? 'Gratis' : money(shipping));
+    totalEl.textContent = money(subtotal + shipping);
     checkoutBtn.textContent = state.checkedOut ? 'Redirigiendo a Mercado Pago…' : 'Finalizar compra';
   }
 
   checkoutBtn.addEventListener('click', () => {
-    const { ids } = cartTotals();
-    if (ids.length === 0) { flash('El carrito está vacío'); return; }
+    if (cartTotals().ids.length === 0) { flash('El carrito está vacío'); return; }
     state.checkedOut = true;
     renderCart();
     flash('Demo: acá arranca el checkout');
   });
 
-  // ── Categories ────────────────────────────────────────────────────────
-  const catGrid = document.querySelector('[data-cat-grid]');
-  function renderCategories() {
-    catGrid.innerHTML = '';
-    CATS.forEach(cat => {
+  /* ── Índice de rubros ─────────────────────────────────── */
+
+  const indexWrap = $('[data-index]');
+
+  function renderIndex() {
+    indexWrap.innerHTML = '';
+    CATS.forEach((cat, i) => {
       const count = PRODUCTS.filter(p => p.cat === cat.id).length;
-      const btn = el('button', { type: 'button', class: 'cat-btn' }, [
-        el('span', { style: 'width:100%; aspect-ratio:1; border-radius:999px; display:flex; align-items:center; justify-content:center; background:#e1eecc; color:#3d472b; box-shadow:0 3px 10px rgba(46,43,37,.16)' }, [svgIcon(CAT_ICONS[cat.id])]),
-        el('span', { style: "font-family:'Cinzel',serif; font-size:16px; font-weight:600; color:#0b3325; letter-spacing:.03em; text-align:center", text: cat.label }),
-        el('span', { style: 'font-size:12px; color:#82796a; margin-top:-8px', text: count + ' productos' })
+      const row = el('button', { type: 'button', class: 'index__row' }, [
+        el('span', { class: 'index__n', text: '0' + (i + 1) }),
+        el('span', { class: 'index__name', text: cat.label }),
+        el('span', { class: 'index__count', text: count + ' productos' }),
+        el('span', { class: 'index__arrow' }, [icon(ICON.arrow, 14)])
       ]);
-      btn.addEventListener('click', () => {
+      row.addEventListener('click', () => {
         state.filter = cat.id;
         renderChips();
         renderProducts();
-        const target = document.getElementById('productos');
-        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+        const t = document.getElementById('tienda');
+        window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 20, behavior: REDUCED ? 'auto' : 'smooth' });
       });
-      catGrid.appendChild(btn);
+      indexWrap.appendChild(row);
     });
   }
 
-  // ── Filter chips ──────────────────────────────────────────────────────
-  const chipsWrap = document.querySelector('[data-filter-chips]');
+  /* ── Filtros ──────────────────────────────────────────── */
+
+  const chipsWrap = $('[data-chips]');
   function renderChips() {
     chipsWrap.innerHTML = '';
-    const items = [{ id: 'todos', label: 'Todo' }].concat(CATS);
-    items.forEach(c => {
-      const active = state.filter === c.id;
-      const btn = el('button', {
-        type: 'button',
-        class: 'btn ' + (active ? 'btn-primary' : 'btn-secondary'),
-        style: 'padding:9px 20px; font-size:14px',
-        text: c.label
-      });
-      btn.addEventListener('click', () => {
+    [{ id: 'todos', label: 'Todo' }].concat(CATS).forEach(c => {
+      const on = state.filter === c.id;
+      const b = el('button', { type: 'button', class: 'chip', 'aria-pressed': on ? 'true' : 'false', text: c.label });
+      b.addEventListener('click', () => {
+        if (state.filter === c.id) return;
         state.filter = c.id;
         renderChips();
         renderProducts();
       });
-      chipsWrap.appendChild(btn);
+      chipsWrap.appendChild(b);
     });
   }
 
-  // ── Products ──────────────────────────────────────────────────────────
-  const productGrid = document.querySelector('[data-product-grid]');
-  const resultsLabel = document.querySelector('[data-results-label]');
+  /* ── Grilla de productos ──────────────────────────────── */
 
-  function stockLabel(p, big) {
-    if (big) return p.stock > 8 ? 'En stock — envío inmediato' : 'Quedan ' + p.stock + ' unidades';
-    return p.stock > 8 ? 'En stock' : 'Quedan ' + p.stock;
-  }
+  const grid = $('[data-products]');
+  const resultsEl = $('[data-results]');
+
+  const stockLabel = (p, big) => p.stock > 8
+    ? (big ? 'En stock — envío inmediato' : 'En stock')
+    : (big ? 'Quedan ' + p.stock + ' unidades' : 'Quedan ' + p.stock);
 
   function renderProducts() {
     const list = state.filter === 'todos' ? PRODUCTS : PRODUCTS.filter(p => p.cat === state.filter);
-    resultsLabel.textContent = list.length + (list.length === 1 ? ' producto disponible' : ' productos disponibles');
+    resultsEl.textContent = list.length + (list.length === 1 ? ' producto' : ' productos');
 
-    productGrid.innerHTML = '';
-    list.forEach(p => {
-      const imgBtn = el('button', { type: 'button', style: 'border:0; padding:0; background:#ebddc5; cursor:pointer; display:block; position:relative; aspect-ratio:1' }, [
-        el('img', { src: PRODUCT_IMAGES[p.id], alt: p.name, style: 'width:100%; height:100%; object-fit:cover' }),
-        p.badge ? el('span', { style: 'position:absolute; top:14px; left:14px; background:#ee8fbe; color:#0b3325; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:6px 12px; border-radius:999px; pointer-events:none', text: p.badge }) : null
+    grid.innerHTML = '';
+
+    list.forEach((p, i) => {
+      const featured = p.feature && state.filter === 'todos';
+
+      const open = el('button', { type: 'button', class: 'card__open', 'aria-label': 'Ver detalle de ' + p.name });
+      open.addEventListener('click', () => openProduct(p.id));
+
+      const add = el('button', { type: 'button', class: 'card__add', text: 'Agregar al carrito' });
+      add.addEventListener('click', () => addToCart(p.id));
+
+      const media = el('div', { class: 'card__media' }, [
+        el('img', { src: PRODUCT_IMAGES[p.id], alt: p.name, loading: i < 4 ? 'eager' : 'lazy', decoding: 'async' }),
+        p.badge ? el('span', { class: 'badge', text: p.badge }) : null,
+        open,
+        add
       ]);
-      imgBtn.addEventListener('click', () => openProductModal(p.id));
 
-      const addBtn = el('button', { type: 'button', class: 'btn btn-primary', style: 'background:#0b3325; border-color:#0b3325; width:100%; margin-top:12px; padding:11px 16px; font-size:14px', text: 'Agregar al carrito' });
-      addBtn.addEventListener('click', () => addToCart(p.id));
-
-      const card = el('article', { class: 'card product-card' }, [
-        imgBtn,
-        el('div', { style: 'padding:20px 20px 22px; display:flex; flex-direction:column; gap:9px; flex:1' }, [
-          el('div', { style: 'font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#82796a; font-weight:700', text: catLabel(p.cat) }),
-          el('h3', { style: "font-family:'Cinzel',serif; font-weight:600; font-size:17.5px; line-height:1.25; color:#0b3325; margin:0; letter-spacing:.01em; text-wrap:pretty", text: p.name }),
-          el('div', { style: 'font-size:13px; color:#645c50; line-height:1.45', text: p.short }),
-          el('div', { style: 'margin-top:auto; padding-top:14px; display:flex; align-items:baseline; justify-content:space-between; gap:10px' }, [
-            el('span', { style: "font-family:'Cinzel',serif; font-size:20px; font-weight:600; color:#0b3325", text: money(p.price) }),
-            el('span', { style: 'font-size:11.5px; color:#728157; font-weight:600', text: stockLabel(p, false) })
-          ]),
-          addBtn
+      const card = el('article', {
+        class: 'card' + (featured ? ' card--feature' : ''),
+        'data-reveal': '',
+        style: '--d:' + Math.min(i, 6) * 70
+      }, [
+        media,
+        el('div', { class: 'card__body' }, [
+          el('p', { class: 'card__cat', text: catLabel(p.cat) }),
+          el('h3', { class: 'card__name', text: p.name }),
+          el('p', { class: 'card__short', text: p.short }),
+          el('div', { class: 'card__foot' }, [
+            el('span', { class: 'card__price', text: money(p.price) }),
+            el('span', { class: 'card__stock', 'data-low': p.stock > 8 ? '0' : '1', text: stockLabel(p, false) })
+          ])
         ])
       ]);
-      productGrid.appendChild(card);
+
+      grid.appendChild(card);
+      observeReveal(card);
     });
   }
 
-  // ── Product modal ────────────────────────────────────────────────────
-  const modalWrap = document.querySelector('[data-product-modal-wrap]');
-  const modalImg = document.querySelector('[data-modal-img]');
-  const modalCategory = document.querySelector('[data-modal-category]');
-  const modalName = document.querySelector('[data-modal-name]');
-  const modalPrice = document.querySelector('[data-modal-price]');
-  const modalStock = document.querySelector('[data-modal-stock]');
-  const modalDesc = document.querySelector('[data-modal-desc]');
-  const modalTags = document.querySelector('[data-modal-tags]');
-  const modalAdd = document.querySelector('[data-modal-add]');
-  const modalSku = document.querySelector('[data-modal-sku]');
+  /* ── Modal de producto ────────────────────────────────── */
 
-  function openProductModal(id) {
+  const modal = $('[data-modal]');
+  const mImg  = $('[data-modal-img]');
+  const mCat  = $('[data-modal-category]');
+  const mName = $('[data-modal-name]');
+  const mPrice= $('[data-modal-price]');
+  const mStock= $('[data-modal-stock]');
+  const mDesc = $('[data-modal-desc]');
+  const mTags = $('[data-modal-tags]');
+  const mAdd  = $('[data-modal-add]');
+  const mSku  = $('[data-modal-sku]');
+  let modalReturnFocus = null;
+
+  function openProduct(id) {
     const p = productById(id);
     if (!p) return;
     state.openId = id;
-    modalImg.src = PRODUCT_IMAGES[p.id];
-    modalImg.alt = p.name;
-    modalCategory.textContent = catLabel(p.cat);
-    modalName.textContent = p.name;
-    modalPrice.textContent = money(p.price);
-    modalStock.textContent = stockLabel(p, true);
-    modalDesc.textContent = p.desc;
-    modalTags.innerHTML = '';
-    p.tags.forEach(t => modalTags.appendChild(el('span', { class: 'tag tag-neutral', text: t })));
-    modalSku.textContent = 'Código LP-' + p.id.toUpperCase() + ' · Envío en 48–72 h a todo el país · Retiro sin cargo en el local.';
-    modalWrap.style.display = 'flex';
+    modalReturnFocus = document.activeElement;
+
+    mImg.src = PRODUCT_IMAGES[p.id];
+    mImg.alt = p.name;
+    mCat.textContent = catLabel(p.cat);
+    mName.textContent = p.name;
+    mPrice.textContent = money(p.price);
+    mStock.textContent = stockLabel(p, true);
+    mStock.setAttribute('data-low', p.stock > 8 ? '0' : '1');
+    mDesc.textContent = p.desc;
+    mTags.innerHTML = '';
+    p.tags.forEach(t => mTags.appendChild(el('span', { class: 'tag', text: t })));
+    mSku.textContent = 'Código LP-' + p.id.toUpperCase() + ' · Envío en 48–72 h a todo el país · Retiro sin cargo en el local.';
+
+    modal.classList.add('is-open');
+    lockScroll(true);
+    $('.modal__close', modal).focus({ preventScroll: true });
   }
-  function closeProductModal() { modalWrap.style.display = 'none'; state.openId = null; }
-  document.querySelectorAll('[data-close-product]').forEach(b => b.addEventListener('click', closeProductModal));
-  modalAdd.addEventListener('click', () => {
+
+  function closeProduct() {
+    if (!modal.classList.contains('is-open')) return;
+    modal.classList.remove('is-open');
+    state.openId = null;
+    lockScroll(false);
+    if (modalReturnFocus) modalReturnFocus.focus({ preventScroll: true });
+  }
+
+  $$('[data-close-product]').forEach(b => b.addEventListener('click', closeProduct));
+  mAdd.addEventListener('click', () => {
     if (!state.openId) return;
-    addToCart(state.openId);
-    closeProductModal();
+    const id = state.openId;
+    closeProduct();
+    addToCart(id);
     openCart();
   });
 
   document.addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
-    if (modalWrap.style.display !== 'none') closeProductModal();
-    else if (cartWrap.style.display !== 'none') closeCart();
+    if (modal.classList.contains('is-open')) closeProduct();
+    else if (cartWrap.classList.contains('is-open')) closeCart();
+    else if (document.body.classList.contains('is-menu-open')) setMenu(false);
   });
 
-  // ── Auction countdown ─────────────────────────────────────────────────
-  const auctionEl = document.querySelector('[data-auction-countdown]');
+  /* ── Subastas ─────────────────────────────────────────── */
+
+  // El remate es mensual: cierra el día 4 a las 21 h.
+  function nextAuctionEnd() {
+    const now = new Date();
+    let d = new Date(now.getFullYear(), now.getMonth(), 4, 21, 0, 0);
+    if (d.getTime() <= now.getTime()) d = new Date(now.getFullYear(), now.getMonth() + 1, 4, 21, 0, 0);
+    return d.getTime();
+  }
+  let auctionEnd = nextAuctionEnd();
+
+  const cdD = $('[data-cd-d]'), cdH = $('[data-cd-h]'), cdM = $('[data-cd-m]');
   function tickAuction() {
-    const ms = Math.max(0, AUCTION_END - Date.now());
-    if (ms <= 0) { auctionEl.textContent = 'Cerrada'; return; }
-    const d = Math.floor(ms / 86400000);
-    const h = Math.floor(ms / 3600000) % 24;
-    auctionEl.textContent = 'Cierra en ' + d + ' d ' + h + ' h';
+    let ms = auctionEnd - Date.now();
+    if (ms <= 0) { auctionEnd = nextAuctionEnd(); ms = auctionEnd - Date.now(); }
+    cdD.textContent = pad(Math.floor(ms / 86400000));
+    cdH.textContent = pad(Math.floor(ms / 3600000) % 24);
+    cdM.textContent = pad(Math.floor(ms / 60000) % 60);
   }
   tickAuction();
-  setInterval(tickAuction, 30000);
+  setInterval(tickAuction, 20000);
 
-  document.querySelector('[data-subscribe-form]').addEventListener('submit', e => {
+  $('[data-subscribe]').addEventListener('submit', e => {
     e.preventDefault();
     if (state.subscribed) return;
     state.subscribed = true;
-    document.querySelector('[data-subscribe-label]').textContent = '¡Anotado!';
+    $('[data-subscribe-label]').textContent = '¡Anotado!';
     flash('Te avisamos del próximo remate');
   });
-  document.querySelector('[data-bid]').addEventListener('click', () => {
-    flash('Demo: se abre el formulario de oferta');
-  });
 
-  // ── Contact form ──────────────────────────────────────────────────────
-  const contactForm = document.querySelector('[data-contact-form]');
-  const contactSent = document.querySelector('[data-contact-sent]');
-  const contactSentName = document.querySelector('[data-contact-sent-name]');
-  const contactError = document.querySelector('[data-contact-error]');
+  $('[data-bid]').addEventListener('click', () => flash('Demo: se abre el formulario de oferta'));
 
-  function setContactError(msg) {
-    if (msg) { contactError.textContent = msg; contactError.hidden = false; }
-    else { contactError.hidden = true; contactError.textContent = ''; }
+  /* ── Formulario de contacto ───────────────────────────── */
+
+  const form = $('[data-contact-form]');
+  const sent = $('[data-contact-sent]');
+  const sentName = $('[data-contact-sent-name]');
+  const errEl = $('[data-contact-error]');
+
+  function setErr(msg) {
+    errEl.textContent = msg || '';
+    errEl.hidden = !msg;
   }
-  contactForm.querySelectorAll('input, textarea').forEach(f => {
-    f.addEventListener('input', () => setContactError(''));
-  });
+  $$('input, textarea', form).forEach(f => f.addEventListener('input', () => setErr('')));
 
-  contactForm.addEventListener('submit', e => {
+  form.addEventListener('submit', e => {
     e.preventDefault();
-    const name = contactForm.nombre.value.trim();
-    const mail = contactForm.mail.value.trim();
-    const msg = contactForm.consulta.value.trim();
-    if (!name) return setContactError('Nos falta tu nombre.');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) return setContactError('Revisá el correo, no parece válido.');
-    if (msg.length < 8) return setContactError('Contanos un poco más de qué necesitás.');
-    setContactError('');
-    contactSentName.textContent = name;
-    contactForm.style.display = 'none';
-    contactSent.hidden = false;
+    const name = form.nombre.value.trim();
+    const mail = form.mail.value.trim();
+    const msg  = form.consulta.value.trim();
+    if (!name) { setErr('Nos falta tu nombre.'); form.nombre.focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) { setErr('Revisá el correo, no parece válido.'); form.mail.focus(); return; }
+    if (msg.length < 8) { setErr('Contanos un poco más de qué necesitás.'); form.consulta.focus(); return; }
+    setErr('');
+    sentName.textContent = name;
+    form.hidden = true;
+    sent.hidden = false;
     flash('Consulta enviada');
   });
-  document.querySelector('[data-contact-reset]').addEventListener('click', () => {
-    contactForm.reset();
-    setContactError('');
-    contactSent.hidden = true;
-    contactForm.style.display = 'flex';
+
+  $('[data-contact-reset]').addEventListener('click', () => {
+    form.reset();
+    setErr('');
+    sent.hidden = true;
+    form.hidden = false;
+    form.nombre.focus();
   });
 
-  // ── Init ──────────────────────────────────────────────────────────────
-  renderCategories();
+  /* ── Marquesina: se duplica para que el loop cierre ───── */
+
+  (function buildMarquee() {
+    const track = $('[data-marquee]');
+    if (!track) return;
+    track.appendChild(track.firstElementChild.cloneNode(true));
+  })();
+
+  /* ── Revelados al hacer scroll ────────────────────────── */
+
+  const revealIO = 'IntersectionObserver' in window && !REDUCED
+    ? new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (!en.isIntersecting) return;
+          en.target.classList.add('is-in');
+          revealIO.unobserve(en.target);
+          if (en.target.classList.contains('stats')) countUp(en.target);
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 })
+    : null;
+
+  function observeReveal(node) {
+    if (!revealIO) { node.classList.add('is-in'); return; }
+    revealIO.observe(node);
+  }
+
+  function countUp(scope) {
+    $$('[data-count]', scope).forEach(n => {
+      const target = parseInt(n.getAttribute('data-count'), 10);
+      const prefix = n.getAttribute('data-prefix') || '';
+      const t0 = performance.now();
+      const dur = 1300;
+      (function step(t) {
+        const k = clamp((t - t0) / dur, 0, 1);
+        const eased = 1 - Math.pow(1 - k, 4);
+        n.textContent = prefix + Math.round(target * eased);
+        if (k < 1) requestAnimationFrame(step);
+      })(t0);
+    });
+  }
+
+  /* ── Parallax + preview: un solo bucle de rAF ─────────── */
+
+  const parallaxEls = $$('[data-parallax]').map(node => ({
+    node,
+    f: parseFloat(node.getAttribute('data-parallax')) || 0.1,
+    box: node.parentElement
+  }));
+
+  let lastFrameY = -1;
+  let dirty = true;
+
+  function updateParallax() {
+    const vh = window.innerHeight;
+    parallaxEls.forEach(item => {
+      const r = item.box.getBoundingClientRect();
+      if (r.bottom < -240 || r.top > vh + 240) return;
+      // Positivo = la imagen baja mientras la página sube: se mueve
+      // más lento que el resto. Se limita al sobrante disponible.
+      const max = r.height * 0.15;
+      const off = clamp((vh / 2 - (r.top + r.height / 2)) * item.f, -max, max);
+      item.node.style.translate = '0 ' + off.toFixed(1) + 'px';
+    });
+  }
+
+  function loop() {
+    const y = window.scrollY;
+    if (y !== lastFrameY || dirty) {
+      lastFrameY = y;
+      dirty = false;
+      updateParallax();
+    }
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('scroll', onNavScroll, { passive: true });
+  window.addEventListener('resize', () => { dirty = true; }, { passive: true });
+
+  /* ── Botones magnéticos ───────────────────────────────── */
+
+  if (!REDUCED && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    $$('[data-magnetic]').forEach(btn => {
+      btn.addEventListener('pointermove', e => {
+        const r = btn.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) * 0.22;
+        const dy = (e.clientY - (r.top + r.height / 2)) * 0.32;
+        btn.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px)';
+      });
+      btn.addEventListener('pointerleave', () => { btn.style.transform = ''; });
+    });
+  }
+
+  /* ── Arranque ─────────────────────────────────────────── */
+
+  renderIndex();
   renderChips();
   renderProducts();
   renderCart();
+
+  $$('[data-reveal]').forEach(observeReveal);
+
+  onNavScroll();
+  if (!REDUCED) requestAnimationFrame(loop);
+
+  function ready() {
+    document.body.classList.add('is-ready');
+  }
+  if (document.fonts && document.fonts.ready) {
+    // Esperamos a las fuentes para que el hero no salte, pero con techo.
+    Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1200))]).then(ready);
+  } else {
+    ready();
+  }
 })();
