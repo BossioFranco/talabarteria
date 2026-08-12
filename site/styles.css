@@ -879,10 +879,8 @@ textarea.input { resize: vertical; min-height: 7.5rem; line-height: 1.6; }
 
 /* ── 12. Tienda ───────────────────────────────────────────── */
 
+/* Queda quieta en su lugar: no acompaña el scroll. */
 .shop-bar {
-  position: sticky;
-  top: var(--nav-h);
-  z-index: 30;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -890,7 +888,6 @@ textarea.input { resize: vertical; min-height: 7.5rem; line-height: 1.6; }
   flex-wrap: wrap;
   padding-block: 16px;
   margin-bottom: clamp(24px, 3vw, 44px);
-  background: var(--bg);
   border-bottom: 1px solid var(--line);
 }
 
@@ -1558,21 +1555,23 @@ textarea.input { resize: vertical; min-height: 7.5rem; line-height: 1.6; }
 
 /* ── 23. Motion ───────────────────────────────────────────── */
 
-[data-reveal] {
+/* Todo el estado oculto cuelga de .js, que agrega un script inline en el
+   <head>. Si el JS no corre o falla, el contenido se ve igual. */
+.js [data-reveal] {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity .95s var(--e-out), transform .95s var(--e-out);
   transition-delay: calc(var(--d, 0) * 1ms);
 }
-[data-reveal].is-in { opacity: 1; transform: none; }
+.js [data-reveal].is-in { opacity: 1; transform: none; }
 
-[data-reveal="mask"] {
+.js [data-reveal="mask"] {
   transform: none;
   opacity: 1;
   clip-path: inset(0 0 100% 0);
   transition: clip-path 1.2s var(--e-out);
 }
-[data-reveal="mask"].is-in { clip-path: inset(0 0 0 0); }
+.js [data-reveal="mask"].is-in { clip-path: inset(0 0 0 0); }
 
 /* Parallax: la imagen es 130% del contenedor y se centra en ese
    sobrante, así nunca se destapa un borde. Usa la propiedad
@@ -1597,7 +1596,7 @@ textarea.input { resize: vertical; min-height: 7.5rem; line-height: 1.6; }
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
-  [data-reveal], .line > i, .hero__foot > *, .hero__eyebrow, .hero__media img, .scroll-hint {
+  .js [data-reveal], .line > i, .hero__foot > *, .hero__eyebrow, .hero__media img, .scroll-hint {
     opacity: 1 !important;
     transform: none !important;
     clip-path: none !important;

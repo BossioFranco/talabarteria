@@ -18,6 +18,10 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css">
+
+<!-- Habilita el estado inicial oculto de los revelados. Si el JS está
+     deshabilitado o falla, esta clase no se agrega y todo se ve. -->
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
@@ -166,7 +170,10 @@
   <div class="shell">
     <div class="taller">
       <figure class="taller__media" data-reveal="mask">
-        <img src="img/taller-cuero.jpg" alt="Poncho tejido en telar, de espaldas, en el campo mendocino" loading="lazy" data-parallax="0.1">
+        <!-- Sin lazy a propósito: el contenedor tiene clip-path cerrado hasta
+             que entra en pantalla, y el navegador nunca pide una imagen
+             totalmente recortada. Prioridad baja para no pelear con el hero. -->
+        <img src="img/taller-cuero.jpg" alt="Poncho tejido en telar, de espaldas, en el campo mendocino" fetchpriority="low" decoding="async" data-parallax="0.1">
       </figure>
 
       <div>
