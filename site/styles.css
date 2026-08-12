@@ -16,7 +16,7 @@
   --tan:        #b4713f;
   --ember:      #e35a24;
   --ember-deep: #a83c13;
-  --moss:       #5f6f4b;
+  --moss:       #55633f;   /* oscurecido: a 10px necesita 4.5:1 sobre hueso */
   --moss-lite:  #93a878;
 
   /* Tema por defecto: papel */
@@ -28,6 +28,10 @@
   --line-2: rgba(20, 16, 12, .08);
   --accent: var(--ember-deep);
   --surface: var(--bone-lift);
+  --wash:    rgba(20, 16, 12, .07);   /* velo de hover */
+  --fg-lift: #2d251c;                 /* la tinta, un punto más clara */
+
+  --ember-lift: #f26c33;
 
   /* Tipografía */
   --f-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
@@ -64,6 +68,8 @@
   --line-2: rgba(239, 232, 220, .08);
   --accent: var(--ember);
   --surface: var(--ink-soft);
+  --wash:    rgba(239, 232, 220, .11);
+  --fg-lift: #fdf8f0;
 }
 
 [data-theme="light"] {
@@ -75,6 +81,8 @@
   --line-2: rgba(20, 16, 12, .08);
   --accent: var(--ember-deep);
   --surface: var(--bone-lift);
+  --wash:    rgba(20, 16, 12, .07);
+  --fg-lift: #2d251c;
 }
 
 /* ── 2. Reset ─────────────────────────────────────────────── */
@@ -249,9 +257,13 @@ body::after {
 
 /* ── 5. Botones ───────────────────────────────────────────── */
 
+/* El hover sólo aclara: nunca invierte el botón ni tapa el texto. */
 .btn {
   --btn-fg: var(--ink);
   --btn-bg: var(--ember);
+  --btn-bg-hover: var(--ember-lift);
+  --btn-bd: var(--btn-bg);
+  --btn-bd-hover: var(--btn-bg-hover);
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -264,45 +276,31 @@ body::after {
   text-transform: uppercase;
   color: var(--btn-fg);
   background: var(--btn-bg);
-  border: 1px solid var(--btn-bg);
+  border: 1px solid var(--btn-bd);
   border-radius: 999px;
-  overflow: hidden;
-  isolation: isolate;
-  transition: color .5s var(--e-out), border-color .5s var(--e-out), transform .35s var(--e-out);
-  will-change: transform;
+  transition: background-color .3s var(--e-out), border-color .3s var(--e-out), transform .35s var(--e-out);
 }
 
-.btn > * { position: relative; z-index: 1; }
-
-.btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: var(--fg);
-  border-radius: inherit;
-  transform: translateY(101%);
-  transition: transform .55s var(--e-out);
+.btn:hover {
+  background: var(--btn-bg-hover);
+  border-color: var(--btn-bd-hover);
 }
-
-.btn:hover::before { transform: none; }
-.btn:hover { color: var(--bg); }
 .btn:active { transform: scale(.975); }
 .btn:disabled { opacity: .4; pointer-events: none; }
 
 .btn--ghost {
   --btn-fg: var(--fg);
   --btn-bg: transparent;
-  border-color: var(--line);
+  --btn-bg-hover: var(--wash);
+  --btn-bd: var(--line);
+  --btn-bd-hover: var(--fg-3);
 }
-.btn--ghost:hover { color: var(--bg); border-color: var(--fg); }
 
 .btn--solid {
   --btn-fg: var(--bg);
   --btn-bg: var(--fg);
+  --btn-bg-hover: var(--fg-lift);
 }
-.btn--solid::before { background: var(--ember); }
-.btn--solid:hover { color: var(--ink); border-color: var(--ember); }
 
 .btn--block { width: 100%; }
 .btn--sm { padding: .8em 1.4em; font-size: .72rem; }
@@ -318,7 +316,7 @@ body::after {
   color: var(--fg);
   transition: background .4s var(--e-out), color .4s var(--e-out), border-color .4s var(--e-out);
 }
-.btn-icon:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.btn-icon:hover { background: var(--wash); border-color: var(--fg-3); }
 
 /* Enlace con subrayado que se dibuja */
 .ln {
@@ -502,7 +500,7 @@ textarea.input { resize: vertical; min-height: 7.5rem; line-height: 1.6; }
   flex-shrink: 0;
   transition: background .4s var(--e-out), color .4s var(--e-out), border-color .4s var(--e-out);
 }
-.nav__cart:hover { background: var(--bone); color: var(--ink); border-color: var(--bone); }
+.nav__cart:hover { background: rgba(239, 232, 220, .13); border-color: rgba(239, 232, 220, .55); }
 .nav__cart[data-filled="1"] { border-color: var(--ember); }
 
 .nav__count {
@@ -798,7 +796,7 @@ textarea.input { resize: vertical; min-height: 7.5rem; line-height: 1.6; }
 }
 .marquee__item:nth-child(even) {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(239, 232, 220, .5);
+  -webkit-text-stroke: 1px rgba(239, 232, 220, .62);
 }
 
 @keyframes slide { to { transform: translateX(-50%); } }
@@ -878,26 +876,6 @@ textarea.input { resize: vertical; min-height: 7.5rem; line-height: 1.6; }
   border-color: var(--accent);
   color: var(--bg);
 }
-
-/* Preview flotante que sigue al cursor */
-.index__peek {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 40;
-  width: clamp(180px, 17vw, 260px);
-  aspect-ratio: 4 / 5;
-  border-radius: 2px;
-  overflow: hidden;
-  pointer-events: none;
-  opacity: 0;
-  /* La posición la escribe el rAF; acá sólo se desvanece. */
-  transition: opacity .45s var(--e-out);
-  box-shadow: 0 30px 70px rgba(20, 16, 12, .45);
-  will-change: transform;
-}
-.index__peek.is-on { opacity: 1; }
-.index__peek img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ── 12. Tienda ───────────────────────────────────────────── */
 
@@ -1018,7 +996,7 @@ textarea.input { resize: vertical; min-height: 7.5rem; line-height: 1.6; }
 }
 .card:hover .card__add,
 .card__add:focus-visible { transform: none; opacity: 1; }
-.card__add:hover { background: var(--ember); }
+.card__add:hover { background: var(--ember-lift); }
 
 .card__body {
   display: flex;
@@ -1450,7 +1428,7 @@ textarea.input { resize: vertical; min-height: 7.5rem; line-height: 1.6; }
   line-height: 1;
   transition: background .35s var(--e-out), color .35s var(--e-out);
 }
-.qty button:hover { background: var(--bone); color: var(--ink); }
+.qty button:hover { background: rgba(239, 232, 220, .14); border-color: rgba(239, 232, 220, .5); }
 .qty span { font-family: var(--f-mono); font-size: .8rem; min-width: 26px; text-align: center; }
 .qty .qty__rm {
   width: auto;
@@ -1537,7 +1515,7 @@ textarea.input { resize: vertical; min-height: 7.5rem; line-height: 1.6; }
   border: 1px solid var(--line);
   transition: background .4s var(--e-out), color .4s var(--e-out);
 }
-.modal__close:hover { background: var(--ink); color: var(--bone); }
+.modal__close:hover { background: var(--wash); border-color: var(--fg-3); }
 
 .modal__price {
   font-family: var(--f-mono);

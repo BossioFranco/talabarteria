@@ -22,7 +22,7 @@
 <body>
 
 <!-- ── Navegación (con la barra de servicio plegable) ────── -->
-<header class="nav" data-nav>
+<header class="nav" data-nav data-theme="dark">
   <div class="ticker-top">
     <div class="ticker-top__row">
       <span>Envíos a todo el país</span>
@@ -59,7 +59,7 @@
 </header>
 
 <!-- ── Menú a pantalla completa ──────────────────────────── -->
-<div class="menu" id="menu" data-menu>
+<div class="menu" id="menu" data-menu data-theme="dark">
   <nav class="menu__list" aria-label="Menú móvil">
     <a href="#rubros" data-close-menu><span>01</span>Rubros</a>
     <a href="#tienda" data-close-menu><span>02</span>Tienda</a>
@@ -76,7 +76,7 @@
 <main>
 
 <!-- ── Hero ──────────────────────────────────────────────── -->
-<section class="hero" id="inicio">
+<section class="hero" id="inicio" data-theme="dark">
   <div class="hero__media">
     <img src="img/hero-montura.jpg" alt="Montura criolla de cuero hecha a mano sobre un caballo, con la cordillera de fondo" fetchpriority="high" data-parallax="0.12">
   </div>
@@ -141,8 +141,6 @@
   </div>
 </section>
 
-<figure class="index__peek" data-peek aria-hidden="true"><img src="" alt=""></figure>
-
 <!-- ── Tienda ────────────────────────────────────────────── -->
 <section class="band band--pad" data-theme="light" id="tienda">
   <div class="shell">
@@ -190,7 +188,7 @@
 </section>
 
 <!-- ── Cita ──────────────────────────────────────────────── -->
-<section class="quote">
+<section class="quote" data-theme="dark">
   <div class="quote__media">
     <img src="img/campo-lifestyle.jpg" alt="Jornada de campo en Mendoza: rastra criolla, riendas y caballos" loading="lazy" data-parallax="0.1">
   </div>
@@ -338,7 +336,7 @@
 </main>
 
 <!-- ── Footer ────────────────────────────────────────────── -->
-<footer class="foot">
+<footer class="foot" data-theme="dark">
   <div class="shell">
     <div class="foot__cols">
       <div>
@@ -387,7 +385,7 @@
 <!-- ── Carrito ───────────────────────────────────────────── -->
 <div class="drawer" data-cart role="dialog" aria-modal="true" aria-label="Carrito de compras">
   <div class="drawer__scrim" data-close-cart></div>
-  <aside class="drawer__panel">
+  <aside class="drawer__panel" data-theme="dark">
     <div class="drawer__head">
       <h2 class="display t-md">Tu carrito</h2>
       <button type="button" class="btn-icon" data-close-cart aria-label="Cerrar carrito">
@@ -412,7 +410,7 @@
 <!-- ── Modal de producto ─────────────────────────────────── -->
 <div class="modal" data-modal role="dialog" aria-modal="true" aria-labelledby="modal-name">
   <div class="modal__scrim" data-close-product></div>
-  <article class="modal__panel">
+  <article class="modal__panel" data-theme="light">
     <button type="button" class="modal__close" data-close-product aria-label="Cerrar">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
     </button>

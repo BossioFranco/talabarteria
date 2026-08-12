@@ -12,11 +12,11 @@
   /* ── Datos ────────────────────────────────────────────── */
 
   const CATS = [
-    { id: 'equino', label: 'Cuidado equino', peek: 'img/p-rep-nat.webp' },
-    { id: 'cuero',  label: 'Cuero',          peek: 'img/mochila-cuero.webp' },
-    { id: 'aperos', label: 'Aperos',         peek: 'img/hero-montura.jpg' },
-    { id: 'mates',  label: 'Mates',          peek: 'img/p-mate.jpg' },
-    { id: 'ropa',   label: 'Indumentaria',   peek: 'img/poncho-rojo.jpg' }
+    { id: 'equino', label: 'Cuidado equino' },
+    { id: 'cuero',  label: 'Cuero' },
+    { id: 'aperos', label: 'Aperos' },
+    { id: 'mates',  label: 'Mates' },
+    { id: 'ropa',   label: 'Indumentaria' }
   ];
 
   const PRODUCT_IMAGES = {
@@ -299,14 +299,12 @@
   /* ── Índice de rubros ─────────────────────────────────── */
 
   const indexWrap = $('[data-index]');
-  const peek = $('[data-peek]');
-  const peekImg = $('img', peek);
 
   function renderIndex() {
     indexWrap.innerHTML = '';
     CATS.forEach((cat, i) => {
       const count = PRODUCTS.filter(p => p.cat === cat.id).length;
-      const row = el('button', { type: 'button', class: 'index__row', 'data-peek-src': cat.peek }, [
+      const row = el('button', { type: 'button', class: 'index__row' }, [
         el('span', { class: 'index__n', text: '0' + (i + 1) }),
         el('span', { class: 'index__name', text: cat.label }),
         el('span', { class: 'index__count', text: count + ' productos' }),
@@ -316,33 +314,12 @@
         state.filter = cat.id;
         renderChips();
         renderProducts();
-        hidePeek();
         const t = document.getElementById('tienda');
         window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 20, behavior: REDUCED ? 'auto' : 'smooth' });
       });
-      row.addEventListener('mouseenter', () => showPeek(cat.peek));
-      row.addEventListener('mouseleave', hidePeek);
-      row.addEventListener('focus', () => showPeek(cat.peek));
-      row.addEventListener('blur', hidePeek);
       indexWrap.appendChild(row);
     });
   }
-
-  // El preview persigue al cursor con inercia
-  const pk = { x: 0, y: 0, tx: 0, ty: 0, on: false };
-  function showPeek(src) {
-    if (REDUCED || window.matchMedia('(hover: none)').matches) return;
-    if (peekImg.getAttribute('src') !== src) peekImg.src = src;
-    pk.on = true;
-    peek.classList.add('is-on');
-  }
-  function hidePeek() { pk.on = false; peek.classList.remove('is-on'); }
-
-  document.addEventListener('pointermove', e => {
-    pk.tx = e.clientX;
-    pk.ty = e.clientY;
-    if (!pk.on) { pk.x = pk.tx; pk.y = pk.ty; }
-  }, { passive: true });
 
   /* ── Filtros ──────────────────────────────────────────── */
 
@@ -610,21 +587,11 @@
   }
 
   function loop() {
-    if (!REDUCED) {
-      const y = window.scrollY;
-      if (y !== lastFrameY || dirty) {
-        lastFrameY = y;
-        dirty = false;
-        updateParallax();
-      }
-
-      // Inercia del preview del índice
-      if (pk.on) {
-        pk.x += (pk.tx - pk.x) * 0.13;
-        pk.y += (pk.ty - pk.y) * 0.13;
-        peek.style.transform =
-          'translate3d(' + pk.x.toFixed(1) + 'px,' + pk.y.toFixed(1) + 'px,0) translate(-50%,-50%)';
-      }
+    const y = window.scrollY;
+    if (y !== lastFrameY || dirty) {
+      lastFrameY = y;
+      dirty = false;
+      updateParallax();
     }
     requestAnimationFrame(loop);
   }
